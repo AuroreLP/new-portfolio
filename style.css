@@ -176,20 +176,9 @@ a {
     color: #2b4743;
     position: relative;
     display: inline-block;
-    padding-bottom: 2rem;
 }
 
-/* La bordure dynamique */
-.section-indicator::after {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: calc(1em * 5);
-    background-color: #2b4743;
-}
+
 
 /* SECTIONS */
 section {
@@ -238,4 +227,27 @@ section {
     font-size: clamp(1rem, 2.5vw, 2rem);
     color: #2b4743;
     margin-bottom: 2rem;
+}
+
+
+
+@media (max-width: 500px) {
+    .home__content {
+        position: relative;
+        min-height: 100vh; /* occupe la hauteur de l’écran */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .home__content img {
+        display: none;
+    }
+
+    .home__content .home-introduction{
+        position: static;
+        width: 90%;
+        transform: none;
+        text-align: center;
+    }
 }
