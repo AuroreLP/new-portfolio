@@ -22,6 +22,22 @@ a {
     color: inherit;
 }
 
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    color: #2b4743;
+    border: 2px solid #2b4743;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.btn:hover {
+    background-color: #2b4743;
+    color: #dce4ec;
+}
+
 /* NAVBAR */
 .navbar {
     position: fixed;
@@ -175,7 +191,6 @@ a {
     background-color: #2b4743;
 }
 
-
 /* SECTIONS */
 section {
     padding: 6rem 2rem;
@@ -185,4 +200,42 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
+}
+
+/* HOME SECTION */
+.home__content {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home__content img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.home__content .home-introduction {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+.home-introduction h1 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    color: #2b4743;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.home-introduction p {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    color: #2b4743;
+    margin-bottom: 2rem;
 }
