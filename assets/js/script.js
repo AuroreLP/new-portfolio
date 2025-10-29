@@ -35,3 +35,11 @@ function updateSectionIndicator() {
 
 window.addEventListener('scroll', updateSectionIndicator);
 updateSectionIndicator();
+
+// HORIZONTAL SCROLLING FOR PROJECTS GRID
+const projectsGrid = document.querySelector('.projects__grid');
+
+projectsGrid.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    projectsGrid.scrollLeft += e.deltaY;
+});
