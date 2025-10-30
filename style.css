@@ -145,10 +145,11 @@ a {
 .menu-overlay.active li:nth-child(4) { transition-delay: 0.4s; }
 
 .menu-overlay a {
+    font-family: "Ubuntu", sans-serif;
     color: white;
     text-decoration: none;
-    font-size: 6rem;
-    font-weight: bold;
+    font-size: clamp(4rem, 7vw, 6rem);
+    font-weight: 500;
     transition: all 0.3s ease;
     display: inline-block;
 }
@@ -156,6 +157,9 @@ a {
 .menu-overlay a:hover {
     color: #9fd4c9;
     transform: scale(1.1);
+    font-weight: 600;
+    font-style: italic;
+    transition: all 0.3s ease;
 }
 
 /* SECTION INDICATOR */
