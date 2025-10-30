@@ -112,7 +112,7 @@ function hideCard(card) {
 
 // SECTION ANCRES
 const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.ancres a');
+const navLinks = document.querySelectorAll('.section-indicator a');
 const icons = document.querySelectorAll('.section-icon');
 
 function updateSectionIndicator() {
