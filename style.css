@@ -572,24 +572,38 @@ section {
     font-weight: 500;
 }
 
-.about-timeline {
+.about-competences {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 1rem;
 }
 
-.timeline-item h3 {
+.about-competences h3 {
     font-size: 1.2rem;
     color: #2b4743;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
 }
 
-.timeline-item p {
+.about-competences p,
+.about-competences li {
     font-size: 1rem;
-    color: #444;
+    color: #2b4743;
     line-height: 1.5;
 }
+
+.about-competences ul  {
+    padding-left: 1.5rem;
+    list-style-type: circle;
+}
+
+@media (max-width: 768px) {
+    .about-competences {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
 
 @media (max-width: 500px) {
     .about-container {
