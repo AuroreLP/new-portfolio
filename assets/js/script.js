@@ -36,10 +36,74 @@ function updateSectionIndicator() {
 window.addEventListener('scroll', updateSectionIndicator);
 updateSectionIndicator();
 
-// HORIZONTAL SCROLLING FOR PROJECTS GRID
-const projectsGrid = document.querySelector('.projects__grid');
+// FILTER PROJECTS
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectCards = Array.from(document.querySelectorAll('.project-card'));
 
-projectsGrid.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    projectsGrid.scrollLeft += e.deltaY;
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const filter = button.getAttribute('data-filter');
+
+    projectCards.forEach(card => {
+      const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+      const match = filter === 'all' || tags.includes(filter);
+
+      // Si la carte doit être visible -> show
+      if (match) {
+        showCard(card);
+      } else {
+        hideCard(card);
+      }
+    });
+  });
 });
+
+function showCard(card) {
+  // Si elle est déjà visible, rien à faire
+  if (!card.classList.contains('hidden') && !card.classList.contains('hiding')) return;
+
+  // Retirer la classe hidden (qui met display:none)
+  card.classList.remove('hidden');
+
+  // Forcer un reflow pour que la suppression de display:none soit prise en compte
+  // (permet ensuite d'animer la suppression de la classe .hiding si elle existait)
+  void card.offsetWidth;
+
+  // Retirer l'état "hiding" pour animer l'entrée (CSS gère transition)
+  card.classList.remove('hiding');
+}
+
+function hideCard(card) {
+  // Si elle est déjà en train de se cacher ou déjà cachée, on ne ré-attache pas plusieurs handlers
+  if (card.classList.contains('hiding') || card.classList.contains('hidden')) {
+    // si déjà hiding, on s'assure qu'un handler est présent (ou pas)
+    return;
+  }
+
+  // Ajout d'une seule fonction de gestion de fin de transition (on la stocke pour pouvoir la supprimer)
+  const onTransitionEnd = (e) => {
+    // on vérifie la propriété pour éviter les multiples appels (transform & opacity)
+    if (e.propertyName !== 'opacity') return;
+
+    // retirer l'écouteur
+    card.removeEventListener('transitionend', onTransitionEnd);
+
+    // une fois la transition finie, retirer du flux
+    card.classList.add('hidden');
+
+    // s'assurer que l'état hiding est bien retiré
+    card.classList.remove('hiding');
+  };
+
+  // attacher le handler
+  card.addEventListener('transitionend', onTransitionEnd);
+
+  // déclencher l'animation de sortie (dans la frame suivante pour être sûr)
+  requestAnimationFrame(() => {
+    card.classList.add('hiding');
+  });
+
+}

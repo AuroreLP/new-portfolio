@@ -50,9 +50,17 @@
         </section>
         <section id="projects" class="projects">
             <h2>My Projects</h2>
-            <div class="container">
-                <div class="projects__grid">
-                    <div class="project-card">
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                <button class="filter-btn" data-filter="php">PHP</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="api">API</button>
+            </div>
+            <!-- Projects grid -->
+            <div class="projects__grid">
+                    <div class="project-card" data-tags="html,css,javascript">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
                         <div class="card-content">
                             <h3>Memory Game</h3>
@@ -64,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-tags="symfony,mysql,docker,php">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
                         <div class="card-content">
                             <h3>Blog </h3>
@@ -76,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-tags="php,docker,bootstrap">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
                         <div class="card-content">
                             <h3>Project management tool</h3>
@@ -88,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-tags="html,css,javascript">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
                         <div class="card-content">
                             <h3>My Portfolio</h3>
@@ -100,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-tags="javascript,bootstrap,api">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
                         <div class="card-content">
                             <h3>Weather App</h3>
@@ -112,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-tags="javascript,php,wordpress">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
                         <div class="card-content">
                             <h3>Wordpress Theme</h3>
@@ -124,7 +132,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
         <section id="about" class="about">
