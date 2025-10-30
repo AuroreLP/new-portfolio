@@ -50,64 +50,88 @@
         </section>
         <section id="projects" class="projects">
             <h2>My Projects</h2>
-            <div class="container">
-                <div class="projects__grid">
-                    <div class="project-card">
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                <button class="filter-btn" data-filter="php">PHP</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="api">API</button>
+            </div>
+            <!-- Projects grid -->
+            <div class="projects__grid">
+                    <div class="project-card" data-tags="html,css,javascript">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
-                        <h3><a href="project1.html">Project Title 1</a></h3>
-                        <p>Brief description of Project 1.</p>
-                        <div class="tags">
-                            <span>JavaScript</span>
-                            <span>CSS</span>
-                            <span>Web Game</span>
+                        <div class="card-content">
+                            <h3>Memory Game</h3>
+                            <p>A simple, accessible and responsive memory matching game with functionalities such as time tracker, flipping cards, match animations, etc.</p>
+                            <div class="tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="assets/img/memorygame desktop.png" alt="Project 2" loading="lazy">
-                        <h3>Project Title 2</h3>
-                        <p>Brief description of Project 2.</p>
-                        <div class="tags">
-                            <span>JavaScript</span>
-                            <span>LocalStorage</span>
-                            <span>UI/UX</span>
+                    <div class="project-card" data-tags="symfony,mysql,docker,php">
+                        <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
+                        <div class="card-content">
+                            <h3>Blog </h3>
+                            <p>My first full-stack application built entirely from scratch, implementing a full CRUD system across two databases with secure authentication.</p>
+                            <div class="tags">
+                                <span>Symfony</span>
+                                <span>MySQL</span>
+                                <span>Docker</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="assets/img/memorygame desktop.png" alt="Project 3" loading="lazy">
-                        <h3>Project Title 3</h3>
-                        <p>Brief description of Project 3.</p>
-                        <div class="tags">
-                            <span>API</span>
-                            <span>JavaScript</span>
-                            <span>Responsive</span>
+                    <div class="project-card" data-tags="php,docker,bootstrap">
+                        <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
+                        <div class="card-content">
+                            <h3>Project management tool</h3>
+                            <p>A task management application for multiple projects with authentication and full CRUD functionality.</p>
+                            <div class="tags">
+                                <span>PHP</span>
+                                <span>Docker</span>
+                                <span>Bootstrap</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="assets/img/memorygame desktop.png" alt="Project 3" loading="lazy">
-                        <h3>Project Title 3</h3>
-                        <p>Brief description of Project 3.</p>
-                        <div class="tags">
-                            <span>JavaScript</span>
-                            <span>LocalStorage</span>
-                            <span>UI/UX</span>
+                    <div class="project-card" data-tags="html,css,javascript">
+                        <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
+                        <div class="card-content">
+                            <h3>My Portfolio</h3>
+                            <p>A responsive, SEO-optimized portfolio to showcase my work and make contact easy. Meta, right? You're experiencing it right now!</p>
+                            <div class="tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <img src="assets/img/memorygame desktop.png" alt="Project 3" loading="lazy">
-                        <h3>Project Title 3</h3>
-                        <p>Brief description of Project 3.</p>
-                    </div>
-                    <div class="project-card">
-                        <img src="assets/img/memorygame desktop.png" alt="Project 3" loading="lazy">
-                        <h3>Project Title 3</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, ad porro eaque quis, aperiam distinctio asperiores illo illum, sint quisquam quas aliquam similique earum necessitatibus neque dicta eveniet quae qui?</p>
-                        <div class="tags">
-                            <span>API</span>
-                            <span>JavaScript</span>
-                            <span>Responsive</span>
+                    <div class="project-card" data-tags="javascript,bootstrap,api">
+                        <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
+                        <div class="card-content">
+                            <h3>Weather App</h3>
+                            <p>A responsive weather app integrating a third-party API to deliver real-time weather data, forecasts, and location-based conditions.</p>
+                            <div class="tags">
+                                <span>Javacript</span>
+                                <span>Bootstrap</span>
+                                <span>API</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="project-card" data-tags="javascript,php,wordpress">
+                        <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
+                        <div class="card-content">
+                            <h3>Wordpress Theme</h3>
+                            <p>A custom WordPress theme for a literary blog featuring ACF integration, custom taxonomies, and custom post types.</p>
+                            <div class="tags">
+                                <span>Javacript</span>
+                                <span>PHP</span>
+                                <span>Wordpress</span>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </section>
         <section id="about" class="about">
@@ -178,5 +202,7 @@
         </section>   
     </main>
     <script src="/assets/js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
