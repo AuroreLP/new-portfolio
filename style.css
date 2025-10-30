@@ -340,7 +340,11 @@ section {
 }
 
 /* Scroll horizontal sur mobile */
-@media (max-width: 768px) {
+@media (max-width: 950px) {
+    .projects {
+        overflow: hidden; /* Important pour contenir le scroll */
+    }
+
     .projects__grid {
         display: flex;
         flex-direction: row;
@@ -349,12 +353,16 @@ section {
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 1rem;
-        margin-left: 0;
+        margin-left: 0 1rem;
+        margin-left: -2rem;
+        width: 100vw;
     }
 
     .project-card {
-        flex: 0 0 100%;
-        scroll-snap-align: start;
+        flex: 0 0 40vw;
+        min-width: 40vw;
+        max-width: 40vw;
+        scroll-snap-align: center;
         padding: 0.75rem;
     }
 
@@ -375,6 +383,16 @@ section {
         font-size: 0.7rem;
         padding: 0.2rem 0.4rem;
     }
+}
+
+@media (max-width: 600px) {
+
+    .project-card {
+        flex: 0 0 70vw;
+        min-width: 70vw;
+        max-width: 70vw;
+    }
+    
 }
 
 /* PROJECT SINGLE PAGE */
