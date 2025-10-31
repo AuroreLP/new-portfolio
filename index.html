@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code By Aurore</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
             <div class="top-nav">
                 <a href="#home" class="logo">
-                    <img src="assets/img/logo AL dark.png" alt="Logo aurore le perff" loading="lazy">
+                    <img id="logo" src="assets/img/logo AL dark.png" alt="Logo" loading="lazy">
                 </a>
                 <button class="burger" aria-label="Menu">
                     <span></span>
@@ -27,10 +30,14 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
-    <div class="section-indicator-wrapper">
-        <div class="section-indicator">Home</div>
+    <div class="section-socials">
+        <div class="github"><a href="https://github.com/AuroreLP" target="_blank"><ion-icon class="socials-logo" name="logo-github"></ion-icon></a></div>
+        <div class="linkedin"><a href="https://www.linkedin.com/in/aurore-le-perff/" target="_blank"><ion-icon class="socials-logo" name="logo-linkedin"></ion-icon></a></ion-icon></div>
+        <div id="darkBtn">
+            <ion-icon id="darkBtn" class="socials-logo darkBtn" name="moon-outline"></ion-icon>
+        </div>
     </div>
-    <div class="ancres">
+    <div class="section-indicator">
         <a href="#home"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
         <a href="#projects"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
         <a href="#about"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
@@ -68,15 +75,18 @@
             <div class="projects__grid">
                     <div class="project-card" data-tags="html,css,javascript">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
-                        <div class="card-content">
-                            <h3>Memory Game</h3>
-                            <p>A simple, accessible and responsive memory matching game with functionalities such as time tracker, flipping cards, match animations, etc.</p>
-                            <div class="tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
+                        <a href="/projects/memorygame.html">
+                            <div class="card-content">
+                                <h3>Memory Game</h3>
+                                <p>A simple, accessible and responsive memory matching game with functionalities such as time tracker, flipping cards, match animations, etc.</p>
+                                <div class="tags">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+                        
                     </div>
                     <div class="project-card" data-tags="symfony,mysql,docker,php">
                         <img src="assets/img/memorygame desktop.png" alt="Project 1" loading="lazy">
@@ -182,23 +192,23 @@
         </section>
         <section id="contact" class="contact">
             <h2>Contact Me</h2>
-            <div class="container">
+            <div class="contact-container">
                 <form action="#" method="post" class="contact-form">
                     <div class="container-left">
-                        <label for="firstname">Firstname:</label>
+                        <label for="firstname">Firstname</label>
                         <input type="text" id="firstname" name="firstname" required>
 
-                        <label for="lastname">Lastname:</label>
+                        <label for="lastname">Lastname</label>
                         <input type="text" id="lastname" name="lastname" required>
 
-                        <label for="email">Email:</label>
+                        <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
-
-                        <label for="subject">Subject:</label>
-                        <input type="text" id="subject" name="subject" required>
                     </div>
                     <div class="container-right">
-                        <label for="message">Message:</label>
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+
+                        <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     
@@ -207,7 +217,8 @@
             </div>
         </section>   
     </main>
-    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/script-common.js"></script>
+    <script src="/assets/js/script-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
