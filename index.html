@@ -193,7 +193,7 @@
         <section id="contact" class="contact">
             <h2>Contact Me</h2>
             <div class="contact-container">
-                <form action="#" method="post" class="contact-form">
+                <form action="#" method="post" class="contact-form" id="contact-form">
                     <div class="container-left">
                         <label for="firstname">Firstname</label>
                         <input type="text" id="firstname" name="firstname" required>
@@ -211,7 +211,9 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    
+                    <div>
+                        <p id="form-message" class="hidden"></p>
+                    </div>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
@@ -221,5 +223,11 @@
     <script src="/assets/js/script-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function() {
+        emailjs.init("fWfJhLGgGoxllEzfA");
+    })();
+    </script>
 </body>
 </html>
