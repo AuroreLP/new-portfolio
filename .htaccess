@@ -1,0 +1,91 @@
+# --------------------------------------------------------------
+# SÉCURITÉ GLOBALE POUR SITE VITRINE HTML/CSS/JS
+# --------------------------------------------------------------
+
+<FilesMatch "\.(env|htaccess|ini|log|bak|git|json|yml|yaml|lock|md|zip|tar|sql)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# --------------------------------------------------------------
+# FORCE HTTPS
+# --------------------------------------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --------------------------------------------------------------
+# EN-TÊTES DE SÉCURITÉ
+# --------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Empêche la détection de type MIME
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Interdit le chargement du site dans une iframe
+  Header always set X-Frame-Options "DENY"
+
+  # Protection XSS basique
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Politique de référent stricte
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Bloque l’accès aux permissions inutiles
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+  # Politique CSP (Content Security Policy)
+  # Autorise uniquement les ressources nécessaires au site
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://cdn.emailjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src https://api.emailjs.com; frame-ancestors 'none'; upgrade-insecure-requests;"
+</IfModule>
+
+# --------------------------------------------------------------
+# HSTS (HTTP Strict Transport Security)
+# --------------------------------------------------------------
+# Oblige les navigateurs à toujours utiliser HTTPS
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# --------------------------------------------------------------
+# PROTECTION CONTRE LE HOTLINKING D’IMAGES
+# --------------------------------------------------------------
+# Empêche que d’autres sites affichent les images directement
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?codebyaurore\.fr [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,NC,L]
+
+# --------------------------------------------------------------
+# PERFORMANCE : COMPRESSION ET CACHE
+# --------------------------------------------------------------
+# Active la compression gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Mise en cache des fichiers statiques
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# --------------------------------------------------------------
+# OPTIONS SUPPLÉMENTAIRES
+# --------------------------------------------------------------
+# Cache-Control
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|jpe?g|png|gif|webp|svg|js|css)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+</IfModule>
+
+# Interdiction de la liste de répertoires
+Options -Indexes
+
+# Suppression du ETag (optimisation)
+FileETag None
+Header unset ETag
