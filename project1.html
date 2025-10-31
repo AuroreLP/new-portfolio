@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code By Aurore</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
             <div class="top-nav">
-                <a href="#home" class="logo">
-                    <img src="assets/img/logo AL dark.png" alt="Logo aurore le perff" loading="lazy">
+                <a href="/index.html" class="logo">
+                    <img id="logo" src="assets/img/logo AL dark.png" alt="Logo aurore le perff" loading="lazy">
                 </a>
                 <button class="burger" aria-label="Menu">
                     <span></span>
@@ -21,14 +24,18 @@
     </header>
     <div class="menu-overlay">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/index.html#home">Home</a></li>
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            <li><a href="/index.html#contact">Contact</a></li>
         </ul>
     </div>
-    <div class="section-indicator-wrapper">
-        <div class="section-indicator"><a href="index.html">Home</a></div>
+    <div class="section-socials">
+        <div class="github"><a href="https://github.com/AuroreLP" target="_blank"><ion-icon class="socials-logo" name="logo-github"></ion-icon></a></div>
+        <div class="linkedin"><a href="https://www.linkedin.com/in/aurore-le-perff/" target="_blank"><ion-icon class="socials-logo" name="logo-linkedin"></ion-icon></a></ion-icon></div>
+        <div id="darkBtn">
+            <ion-icon id="darkBtn" class="socials-logo darkBtn" name="moon-outline"></ion-icon>
+        </div>
     </div>
     <main>
         <section class="project-single">
@@ -71,12 +78,14 @@
         </div>
 
         <!-- Call to action / lien vers le projet live -->
-        <a href="https://www.monsite.com/projet" class="btn btn-project-link" target="_blank">
+        <a href="https://www.monsite.com/projet" class="btn" target="_blank">
             Voir le projet
         </a>
     </section>
 
     </main>
-    <script src="/assets/js/script.js"></script>
+    <script src="assets/js/script-common.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
