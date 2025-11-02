@@ -901,3 +901,12 @@ section {
         padding: 0.6rem 1rem;
     }
 }
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
