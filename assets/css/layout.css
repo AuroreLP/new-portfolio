@@ -1,0 +1,82 @@
+/*  =================================
+    GLOBAL STYLES
+    ================================= */
+body {
+    font-family: "Ubuntu", sans-serif;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+
+h1 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    color: var(--text-color);
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*  =================================
+    NAVIGATION BAR
+    ================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    z-index: 1000;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 2rem;
+}
+
+.logo img {
+    height: 60px;
+}
+
+/*  =================================
+    SECTION LAYOUTS
+    ================================= */
+section {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/*  =================================
+    FOOTER
+    ================================= */
+footer {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}

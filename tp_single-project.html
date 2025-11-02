@@ -3,95 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Aurore Le Perff</title>
-    <meta name="description" content="Discover how Aurore Le Perff brings modern, high-performance websites to life through elegant web development.">
-    <meta property="og:title" content="Aurore Le Perff's Portfolio - Web Developer">'">
-    <meta property="og:description" content="Web Developer based in Compiègne and Paris. Explore my projects and get in touch.">
+    <title>Project Name | Aurore Le Perff</title>
+    <meta name="description" content="Discover the [project name] built by Aurore Le Perff.">
+    <meta property="og:title" content="Project Name - Aurore Le Perff's Portfolio">
+    <meta property="og:description" content="Project description here">
     <meta property="og:image" content="https://codebyaurore.fr/assets/img/logo-AL-dark.png">
     <meta property="og:url" content="https://codebyaurore.fr">
 
-    <link rel="icon" href="/assets/img/favicon.ico">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/img/favicon.ico">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="navbar">
-            <div class="top-nav">
-                <a href="../index.html" class="logo">
-                    <img id="logo" src="../assets/img/logo AL dark.png" alt="Logo aurore le perff" loading="lazy">
-                </a>
-                <button class="burger" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-    </header>
-    <div class="menu-overlay">
-        <ul>
-            <li><a href="../index.html#home">Home</a></li>
-            <li><a href="../index.html#projects">Projects</a></li>
-            <li><a href="../index.html#about">About</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-    </div>
-    <div class="section-socials">
-        <div class="github"><a href="https://github.com/AuroreLP" target="_blank"><ion-icon class="socials-logo" name="logo-github"></ion-icon></a></div>
-        <div class="linkedin"><a href="https://www.linkedin.com/in/aurore-le-perff/" target="_blank"><ion-icon class="socials-logo" name="logo-linkedin"></ion-icon></a></ion-icon></div>
-        <div id="darkBtn">
-            <ion-icon id="darkBtn" class="socials-logo darkBtn" name="moon-outline"></ion-icon>
-        </div>
-    </div>
+    <!-- HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
     <main>
         <section class="project-single">
-        <!-- Titre principal -->
-        <h2 class="project-title">Nom du projet</h2>
+            <!-- Titre et description -->
+            <div class="project-header">
+                <h1 class="project-title">Project Name</h1>
+                <p class="project-description">
+                    A simple, accessible and responsive memory matching game with time tracker, flipping cards, match animations, and score tracking. Built with vanilla JavaScript to practice DOM manipulation and game logic.
+                </p>
+            </div>
 
-        <!-- Description courte -->
-        <p class="project-description">
-            Ce projet est une application web responsive permettant de [objectif du projet].
-        </p>
+            <!-- Fonctionnalités et Specs (deux colonnes) -->
+            <div class="project-details">
+                <div class="project-features">
+                    <h2>Features</h2>
+                    <ul>
+                        <li>Card flip animations with CSS transitions</li>
+                        <li>Real-time timer and move counter</li>
+                        <li>Match detection and validation</li>
+                        <li>Win condition with victory modal</li>
+                        <li>Responsive grid layout</li>
+                        <li>Restart game functionality</li>
+                    </ul>
+                </div>
 
-        <!-- Tags / technologies -->
-        <div class="project-tags">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>Symfony</span>
-        </div>
+                <div class="project-specs">
+                    <h2>Development Specs</h2>
+                    <ul>
+                        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6)</li>
+                        <li><strong>Features:</strong> DOM Manipulation, Event Handling</li>
+                        <li><strong>Design:</strong> Responsive Grid, Flexbox</li>
+                        <li><strong>Performance:</strong> Optimized animations</li>
+                        <li><strong>Accessibility:</strong> Semantic HTML, ARIA labels</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- Galerie / images du projet -->
-        <div class="project-gallery">
-            <img src="assets/img/project1-1.png" alt="Capture d'écran 1">
-            <img src="assets/img/project1-2.png" alt="Capture d'écran 2">
-            <img src="assets/img/project1-3.png" alt="Capture d'écran 3">
-        </div>
+            <!-- Galerie desktop -->
+            <div class="project-showcase">
+                <h2>Desktop View</h2>
+                <div class="project-gallery">
+                    <img src="../assets/img/memorygame-desktop-1.png" alt="Memory game home screen">
+                    <img src="../assets/img/memorygame-desktop-2.png" alt="Memory game in progress">
+                    <img src="../assets/img/memorygame-desktop-3.png" alt="Memory game victory screen">
+                </div>
+            </div>
 
-        <!-- Phases / sous-titres -->
-        <div class="project-phases">
-            <h3>Conception</h3>
-            <p>Planification, wireframes, choix des couleurs et typographies.</p>
+            <!-- The Challenge -->
+            <div class="project-challenge">
+                <h2>The Challenge</h2>
+                <p>
+                    The main challenge of this project was implementing a robust card-matching algorithm that could handle various edge cases. I needed to prevent users from flipping more than two cards at once, ensure smooth animations, and manage game state effectively.
+                </p>
+                <p>
+                    I solved this by implementing a state management system using JavaScript closures and event delegation. The timer function was particularly tricky—I had to ensure it paused during card animations and could be reset cleanly without memory leaks.
+                </p>
+                <p>
+                    Another interesting challenge was creating a shuffle algorithm that guaranteed a solvable game every time. I used the Fisher-Yates algorithm to randomize card positions while maintaining pairs.
+                </p>
+            </div>
 
-            <h3>Développement</h3>
-            <p>Création du HTML/CSS, intégration JS et backend Symfony pour la gestion des données.</p>
+            <!-- Responsive showcase -->
+            <div class="project-responsive">
+                <h2>Responsive Design</h2>
+                <p class="responsive-intro">The application adapts seamlessly across all devices</p>
+                <div class="mobile-mockups">
+                    <div class="mobile-frame">
+                        <div class="mobile-screen">
+                            <img src="../assets/img/memorygame-mobile-1.png" alt="Mobile view home">
+                        </div>
+                    </div>
+                    <div class="mobile-frame">
+                        <div class="mobile-screen">
+                            <img src="../assets/img/memorygame-mobile-2.png" alt="Mobile view game">
+                        </div>
+                    </div>
+                    <div class="mobile-frame">
+                        <div class="mobile-screen">
+                            <img src="../assets/img/memorygame-mobile-3.png" alt="Mobile view victory">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <h3>Tests et optimisation</h3>
-            <p>Tests cross-browser, optimisation mobile et amélioration des performances.</p>
+            <!-- Call to action -->
+            <div class="project-cta">
+                <a href="https://memorygame.codebyaurore.fr" class="btn btn-large" target="_blank" rel="noopener noreferrer">
+                    Check it out
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </a>
+            </div>
+        </section>
 
-            <h3>Lancement</h3>
-            <p>Mise en ligne sur serveur et suivi des retours utilisateurs.</p>
-        </div>
-
-        <!-- Call to action / lien vers le projet live -->
-        <a href="https://www.monsite.com/projet" class="btn" target="_blank">
-            Voir le projet
-        </a>
-    </section>
-
+        <!-- Autres projets -->
+        <section class="other-projects">
+            <h2>Other Projects</h2>
+            <div class="projects-grid-mini">
+                <a href="blog.html" class="project-card-mini">
+                    <img src="../assets/img/blog-thumbnail.png" alt="Blog project">
+                    <div class="card-mini-content">
+                        <h3>Blog Platform</h3>
+                        <p>Full-stack application with Symfony</p>
+                    </div>
+                </a>
+                <a href="project-manager.html" class="project-card-mini">
+                    <img src="../assets/img/pm-thumbnail.png" alt="Project manager">
+                    <div class="card-mini-content">
+                        <h3>Project Manager</h3>
+                        <p>Task management with PHP</p>
+                    </div>
+                </a>
+                <a href="weather-app.html" class="project-card-mini">
+                    <img src="../assets/img/weather-thumbnail.png" alt="Weather app">
+                    <div class="card-mini-content">
+                        <h3>Weather App</h3>
+                        <p>Real-time data with API integration</p>
+                    </div>
+                </a>
+            </div>
+        </section>
     </main>
-    <script src="../assets/js/script-common.js"></script>
+
+    <!-- FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/burger.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
+    
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
