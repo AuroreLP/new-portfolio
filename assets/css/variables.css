@@ -1,0 +1,29 @@
+/* COLOR PALETTE LIGHT THEME */
+:root {
+    --bg-color: #f5f5f5;
+    --other-bg-color: #2b4743;
+    --text-color: #2b4743;
+    --other-text-color: #f5f5f5;
+    --secondary-color: #9fd4c9;
+    --border-color: #2b4743;
+    --hover-bg-color: #2b4743;
+    --hover-text-color: #f5f5f5;
+    --bg-card: #2b4743;
+}
+
+/* DARK THEME */ 
+body.dark-mode {
+    --bg-color: #202C39;
+    --other-bg-color: #f5f5f5;
+    --text-color: #f5f5f5;
+    --other-text-color: #202C39;
+    --secondary-color: #38D6C2;
+    --border-color: #f5f5f5;
+    --hover-bg-color: #f5f5f5;
+    --hover-text-color: #202C39;
+    --bg-card: #202C39;
+}
+
+.dark-mode #logo {
+    content: url('../img/logo AL white.png');
+}
