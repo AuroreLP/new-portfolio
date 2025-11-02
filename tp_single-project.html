@@ -3,47 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Aurore Le Perff</title>
-    <meta name="description" content="Discover how Aurore Le Perff brings modern, high-performance websites to life through elegant web development.">
-    <meta property="og:title" content="Aurore Le Perff's Portfolio - Web Developer">'">
-    <meta property="og:description" content="Web Developer based in Compiègne and Paris. Explore my projects and get in touch.">
+    <title>Memory Game | Aurore Le Perff</title>
+    <meta name="description" content="Discover the memory game built by Aurore Le Perff.">
+    <meta property="og:title" content="Memory Game - Aurore Le Perff's Portfolio">
+    <meta property="og:description" content="A simple, accessible and responsive memory matching game with time tracker, flipping cards, match animations, etc">
     <meta property="og:image" content="https://codebyaurore.fr/assets/img/logo-AL-dark.png">
     <meta property="og:url" content="https://codebyaurore.fr">
 
     <link rel="icon" href="/assets/img/favicon.ico">
-    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="navbar">
-            <div class="top-nav">
-                <a href="../index.html" class="logo">
-                    <img id="logo" src="../assets/img/logo AL dark.png" alt="Logo aurore le perff" loading="lazy">
-                </a>
-                <button class="burger" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-    </header>
-    <div class="menu-overlay">
-        <ul>
-            <li><a href="../index.html#home">Home</a></li>
-            <li><a href="../index.html#projects">Projects</a></li>
-            <li><a href="../index.html#about">About</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-    </div>
-    <div class="section-socials">
-        <div class="github"><a href="https://github.com/AuroreLP" target="_blank"><ion-icon class="socials-logo" name="logo-github"></ion-icon></a></div>
-        <div class="linkedin"><a href="https://www.linkedin.com/in/aurore-le-perff/" target="_blank"><ion-icon class="socials-logo" name="logo-linkedin"></ion-icon></a></ion-icon></div>
-        <div id="darkBtn">
-            <ion-icon id="darkBtn" class="socials-logo darkBtn" name="moon-outline"></ion-icon>
-        </div>
-    </div>
+    <!-- HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
     <main>
         <section class="project-single">
         <!-- Titre principal -->
@@ -91,8 +68,22 @@
     </section>
 
     </main>
-    <script src="../assets/js/script-common.js"></script>
+    <!-- FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/burger.js"></script>
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/section-indicator.js"></script>
+    <script src="../assets/js/filter-projects.js"></script>
+    <script src="../assets/js/contact-form.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function() {
+        emailjs.init("fWfJhLGgGoxllEzfA");
+    })();
+    </script>
 </body>
 </html>

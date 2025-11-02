@@ -1,6 +1,6 @@
 /* LEGAL PAGES */
-section .legal-notices,
-section .privacy-policy {
+.legal-notices,
+.privacy-policy {
     display: flex;
     flex-direction: column;
     align-items: start;
