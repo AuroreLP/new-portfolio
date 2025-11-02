@@ -157,72 +157,54 @@
 /*  =================================
     SINGLE PROJECT PAGE
     ================================= */
-@media (max-width: 500px) {
+@media (max-width: 1100px) {
     .project-single {
-        width: 100%;
-        padding: 1.5rem;
-        border-radius: 0;
-        box-shadow: none;
-        margin-top: 4rem;
+        max-width: 600px;
     }
 
-    .project-title {
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .project-description {
-        font-size: 1rem;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .project-tags {
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .project-tags span {
-        font-size: 0.75rem;
-        padding: 0.2rem 0.4rem;
-    }
-
-    .project-gallery {
-        display: flex;
-        overflow-x: auto;
-        gap: 1rem;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
-    }
-
-    .project-gallery img {
-        flex: 0 0 90%;
-        width: 90%;
-        height: auto;
-        border-radius: 10px;
-        scroll-snap-align: start;
-        object-fit: cover;
-    }
-
-    .project-phases h3 {
-        font-size: 1.1rem;
-        margin-top: 1rem;
-    }
-
-    .project-phases p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-
-    .btn-project-link {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 0.75rem;
-        margin-top: 1rem;
+    .project-details {
+        gap: 3rem;
+        padding: 2rem;
     }
 }
 
+@media (max-width: 768px) {
+    .project-single {
+        max-width: 500px;
+        padding: 0 1rem 2rem;
+        margin: 2rem auto;
+    }
+
+    .project-details {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .project-gallery img {
+        width: 95%;
+    }
+
+    .mobile-mockups {
+        gap: 1.5rem;
+    }
+
+    .mobile-frame {
+        width: 240px;
+        height: 480px;
+    }
+
+    .other-projects {
+        margin: 4rem auto 2rem;
+    }
+
+    .projects-grid-mini {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    .project-single {
+        max-width: 250px;
+    }
+}
