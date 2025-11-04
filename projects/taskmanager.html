@@ -25,9 +25,11 @@
         <section class="project-single">
             <!-- Titre et description -->
             <div class="project-header">
-                <h1 class="project-title">Memory Game</h1>
+                <h1 class="project-title">Task manager</h1>
                 <p class="project-description">
-                    A simple, accessible and responsive memory matching game with time tracker, flipping cards, match animations, and score tracking. Built with vanilla JavaScript to practice DOM manipulation and game logic.
+                    CheckIt is a professional-grade task management web app built with PHP, MySQL, and Docker.<br>
+                    It enables users to organize their work into domains, projects, and tasks — all from a clean, responsive interface.
+                </p>
                 </p>
             </div>
 
@@ -36,24 +38,25 @@
                 <div class="project-features">
                     <h2>Features</h2>
                     <ul>
-                        <li>Card flip animations with CSS transitions</li>
-                        <li>Real-time timer and move counter</li>
-                        <li>Match detection and validation</li>
-                        <li>Win condition with victory modal</li>
-                        <li>Responsive grid layout</li>
-                        <li>Restart game functionality</li>
+                        <li>User authentication and session management</li>
+                        <li>CRUD operations for domains, projects, and tasks</li>
+                        <li>Dashboard with key statistics</li>
+                        <li>Task completion and focus mode</li>
+                        <li>Editable user profile and settings</li>
+                        <li>Secure password hashing and validation</li>
+                        <li>Data persistence via MySQL</li>
+                        <li>Responsive layout (mobile-first design)</li>
                     </ul>
                 </div>
 
                 <div class="project-specs">
                     <h2>Development Specs</h2>
                     <ul>
-                        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6)</li>
-                        <li><strong>Features:</strong> DOM Manipulation, Event Handling</li>
-                        <li><strong>Design:</strong> Responsive Grid, Flexbox</li>
-                        <li><strong>Performance:</strong> Optimized animations</li>
-                        <li><strong>Accessibility:</strong> Semantic HTML, ARIA labels</li>
-                        <li><strong>Deployed</strong> with Github pages</li>
+                        <li><strong>Frontend:</strong> HTML5, CSS3 (Bootstrap 5), JavaScript</li>
+                        <li><strong>Backend:</strong> PHP 8, PDO for secure database access</li>
+                        <li><strong>Database:</strong> MySQL</li>
+                        <li><strong>Deployment:</strong> Docker & Nginx</li>
+                        <li><strong>Architecture:</strong> MVC-inspired</li>
                     </ul>
                 </div>
             </div>
@@ -62,11 +65,13 @@
             <div class="project-showcase">
                 <h2>Desktop View</h2>
                 <div class="project-gallery">
-                    <img src="../assets/img/memorygame_homepage.png" alt="Memory game home screen">
-                    <img src="../assets/img/memorygame_settings.png" alt="Memory game home screen">
-                    <img src="../assets/img/memorygame_playgame.png" alt="Memory game in progress">
-                    <img src="../assets/img/memorygame_playing.png" alt="Memory game victory screen">
-                    <img src="../assets/img/memorygame_finished.png" alt="Memory game victory screen">
+                    <img src="../assets/img/taskmanager/checkit_homepage.png" alt="task manager home screen">
+                    <img src="../assets/img/taskmanager/checkit_login.png" alt="task manager login screen">
+                    <img src="../assets/img/taskmanager/checkit_dashboard.png" alt="task manager dashboard screen">
+                    <img src="../assets/img/taskmanager/checkit_domaines.png" alt="task manager domains screen">
+                    <img src="../assets/img/taskmanager/checkit_projet.png" alt="task manager project screen">
+                    <img src="../assets/img/taskmanager/checkit_focus.png" alt="task manager focus mode screen">
+                    <img src="../assets/img/taskmanager/checkit_settings.png" alt="task manager settings screen">
                 </div>
             </div>
 
@@ -74,13 +79,16 @@
             <div class="project-challenge">
                 <h2>The Challenge</h2>
                 <p>
-                    The main challenge of this project was implementing a robust card-matching algorithm that could handle various edge cases. I needed to prevent users from flipping more than two cards at once, ensure smooth animations, and manage game state effectively.
+                    One of the main challenges was designing a modular and maintainable PHP architecture
+                    that could handle multiple entities (users, domains, projects, and tasks) without code duplication.
                 </p>
                 <p>
-                    I solved this by implementing a state management system using JavaScript closures and event delegation. The timer function was particularly tricky—I had to ensure it paused during card animations and could be reset cleanly without memory leaks.
+                    Managing database access securely was also key — I used <strong>PDO prepared statements</strong> 
+                    to prevent SQL injection and created a centralized connection file (`src/pdo.php`).
                 </p>
                 <p>
-                    Another interesting challenge was creating a shuffle algorithm that guaranteed a solvable game every time. I used the Fisher-Yates algorithm to randomize card positions while maintaining pairs.
+                    Dockerizing the application added another layer of complexity: separating environments (dev/prod),
+                    configuring <strong>Nginx</strong> for both, and ensuring <strong>database persistence</strong> via volumes.
                 </p>
             </div>
 
@@ -91,27 +99,32 @@
                 <div class="mobile-mockups">
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame_mobile1.png" alt="Mobile view home">
+                            <img src="../assets/img/taskmanager/checkit_homepage_mobile.png" alt="Mobile view home">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame_mobile2.png" alt="Mobile view game">
+                            <img src="../assets/img/taskmanager/checkit_login_mobile.png" alt="Mobile view game">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame_mobile3.png" alt="Mobile view victory">
+                            <img src="../assets/img/taskmanager/checkit_dashboard_mobile.png" alt="Mobile view victory">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame_mobile4.png" alt="Mobile view victory">
+                            <img src="../assets/img/taskmanager/checkit_domaines_mobile.png" alt="Mobile view victory">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame_mobile5.png" alt="Mobile view victory">
+                            <img src="../assets/img/taskmanager/checkit_projet_mobile.png" alt="Mobile view victory">
+                        </div>
+                    </div>
+                    <div class="mobile-frame">
+                        <div class="mobile-screen">
+                            <img src="../assets/img/taskmanager/checkit_settings_mobile.png" alt="Mobile view victory">
                         </div>
                     </div>
                 </div>
@@ -119,8 +132,8 @@
 
             <!-- Call to action -->
             <div class="project-cta">
-                <a href="https://aurorelp.github.io/MemoryGame/" class="btn btn-large" target="_blank" rel="noopener noreferrer">
-                    Try it out
+                <a href="https://checkit-svqa.onrender.com/" class="btn btn-large" target="_blank" rel="noopener noreferrer">
+                    Check it out
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </a>
             </div>

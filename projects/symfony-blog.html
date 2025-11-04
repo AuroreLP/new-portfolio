@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name | Aurore Le Perff</title>
+    <title>Symfony Blog | Aurore Le Perff</title>
     <meta name="description" content="Discover the [project name] built by Aurore Le Perff.">
     <meta property="og:title" content="Project Name - Aurore Le Perff's Portfolio">
     <meta property="og:description" content="Project description here">
@@ -24,9 +24,9 @@
         <section class="project-single">
             <!-- Titre et description -->
             <div class="project-header">
-                <h1 class="project-title">Project Name</h1>
+                <h1 class="project-title">Symfony Blog</h1>
                 <p class="project-description">
-                    A simple, accessible and responsive memory matching game with time tracker, flipping cards, match animations, and score tracking. Built with vanilla JavaScript to practice DOM manipulation and game logic.
+                    A complete blog platform built with Symfony 7, featuring an advanced administration system, full CRUD management for articles, categories and tags, and a comment system with moderation. Deployed with Docker for a reproducible and scalable development environment.
                 </p>
             </div>
 
@@ -35,34 +35,47 @@
                 <div class="project-features">
                     <h2>Features</h2>
                     <ul>
-                        <li>Card flip animations with CSS transitions</li>
-                        <li>Real-time timer and move counter</li>
-                        <li>Match detection and validation</li>
-                        <li>Win condition with victory modal</li>
-                        <li>Responsive grid layout</li>
-                        <li>Restart game functionality</li>
+                        <li>Complete CRUD system for articles, categories and tags</li>
+                        <li>Admin dashboard with statistics</li>
+                        <li>Comment management with moderation system</li>
+                        <li>Dynamic filtering by categories and tags</li>
+                        <li>Secure authentication system</li>
+                        <li>Responsive design with SASS/SCSS</li>
                     </ul>
                 </div>
 
                 <div class="project-specs">
                     <h2>Development Specs</h2>
                     <ul>
-                        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6)</li>
-                        <li><strong>Features:</strong> DOM Manipulation, Event Handling</li>
-                        <li><strong>Design:</strong> Responsive Grid, Flexbox</li>
-                        <li><strong>Performance:</strong> Optimized animations</li>
-                        <li><strong>Accessibility:</strong> Semantic HTML, ARIA labels</li>
+                        <li><strong>Backend:</strong> Symfony 7, PHP 8.2+</li>
+                        <li><strong>Database:</strong> MySQL/MariaDB, MongoDB</li>
+                        <li><strong>Frontend:</strong> Twig, SASS/SCSS, JavaScript (ES6)</li>
+                        <li><strong>Infrastructure:</strong> Docker, Docker Compose</li>
+                        <li><strong>Testing:</strong> PHPUnit</li>
+                        <li><strong>Security:</strong> Symfony Security Bundle, CSRF Protection</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Galerie desktop -->
             <div class="project-showcase">
-                <h2>Desktop View</h2>
+                <h2>Administration Dashboard</h2>
                 <div class="project-gallery">
-                    <img src="../assets/img/memorygame-desktop-1.png" alt="Memory game home screen">
-                    <img src="../assets/img/memorygame-desktop-2.png" alt="Memory game in progress">
-                    <img src="../assets/img/memorygame-desktop-3.png" alt="Memory game victory screen">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_loginpage.png" alt="Memory game home screen">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_dashboard.png" alt="Memory game in progress">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_articleSection.png" alt="Memory game victory screen">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_commentSection.png" alt="Memory game victory screen">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_categorieSection.png" alt="Memory game victory screen">
+                </div>
+            </div>
+
+            <div class="project-showcase">
+                <h2>Public Interface</h2>
+                <div class="project-gallery">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_blogpage.png" alt="Memory game home screen">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_articlepage.png" alt="Memory game in progress">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_commentArticle.png" alt="Memory game victory screen">
+                    <img src="../assets/img/symfonyBlog/codebyaurore_contactpage.png" alt="Memory game victory screen">
                 </div>
             </div>
 
@@ -70,13 +83,16 @@
             <div class="project-challenge">
                 <h2>The Challenge</h2>
                 <p>
-                    The main challenge of this project was implementing a robust card-matching algorithm that could handle various edge cases. I needed to prevent users from flipping more than two cards at once, ensure smooth animations, and manage game state effectively.
+                    The main challenge of this project was creating a robust and scalable content management system while maintaining a clear separation between the public interface and administration. I had to implement a granular permission system to secure access to different dashboard sections.
                 </p>
                 <p>
-                    I solved this by implementing a state management system using JavaScript closures and event delegation. The timer function was particularly tricky—I had to ensure it paused during card animations and could be reset cleanly without memory leaks.
+                    Managing relationships between entities (Articles, Categories, Tags, Comments) with Doctrine ORM required particular attention to optimize queries and avoid the N+1 problem. I used custom joins in repositories to efficiently load associated data.
                 </p>
                 <p>
-                    Another interesting challenge was creating a shuffle algorithm that guaranteed a solvable game every time. I used the Fisher-Yates algorithm to randomize card positions while maintaining pairs.
+                    Docker integration also presented interesting challenges, particularly for volume synchronization and database migration management. I created a Makefile to automate common tasks (build, migrations, fixtures) and facilitate onboarding for new developers.
+                </p>
+                <p>
+                    The dynamic filtering system (categories and tags) on the frontend was implemented with vanilla JavaScript to improve user experience without page reloads, while maintaining a functional fallback if JavaScript is disabled.
                 </p>
             </div>
 
@@ -87,17 +103,27 @@
                 <div class="mobile-mockups">
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame-mobile-1.png" alt="Mobile view home">
+                            <img src="../assets/img/blog/codebyaurore_mobile1.png">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame-mobile-2.png" alt="Mobile view game">
+                            <img src="../assets/img/blog/codebyaurore_mobile4.png" alt="Mobile view game">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame-mobile-3.png" alt="Mobile view victory">
+                            <img src="../assets/img/blog/codebyaurore_mobile5.png" alt="Mobile view victory">
+                        </div>
+                    </div>
+                    <div class="mobile-frame">
+                        <div class="mobile-screen">
+                            <img src="../assets/img/blog/codebyaurore_mobile3.png" alt="Mobile view victory">
+                        </div>
+                    </div>
+                    <div class="mobile-frame">
+                        <div class="mobile-screen">
+                            <img src="../assets/img/blog/codebyaurore_mobile2.png" alt="Mobile view victory">
                         </div>
                     </div>
                 </div>
@@ -105,8 +131,8 @@
 
             <!-- Call to action -->
             <div class="project-cta">
-                <a href="https://memorygame.codebyaurore.fr" class="btn btn-large" target="_blank" rel="noopener noreferrer">
-                    Check it out
+                <a href="https://github.com/AuroreLP/codebyaurore" class="btn btn-large" target="_blank" rel="noopener noreferrer">
+                    View code on Github
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </a>
             </div>

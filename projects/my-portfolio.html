@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name | Aurore Le Perff</title>
+    <title>My Portfolio | Aurore Le Perff</title>
     <meta name="description" content="Discover the [project name] built by Aurore Le Perff.">
     <meta property="og:title" content="Project Name - Aurore Le Perff's Portfolio">
     <meta property="og:description" content="Project description here">
@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!-- HEADER PLACEHOLDER -->
@@ -24,9 +25,9 @@
         <section class="project-single">
             <!-- Titre et description -->
             <div class="project-header">
-                <h1 class="project-title">Project Name</h1>
+                <h1 class="project-title">My Portfolio</h1>
                 <p class="project-description">
-                    A simple, accessible and responsive memory matching game with time tracker, flipping cards, match animations, and score tracking. Built with vanilla JavaScript to practice DOM manipulation and game logic.
+                    A modern and responsive portfolio website to showcase my projects, skills, and experience as a web developer. Built with HTML5, CSS3, and JavaScript, featuring smooth animations, a dark mode toggle, and a contact form.
                 </p>
             </div>
 
@@ -35,12 +36,12 @@
                 <div class="project-features">
                     <h2>Features</h2>
                     <ul>
-                        <li>Card flip animations with CSS transitions</li>
-                        <li>Real-time timer and move counter</li>
-                        <li>Match detection and validation</li>
-                        <li>Win condition with victory modal</li>
-                        <li>Responsive grid layout</li>
-                        <li>Restart game functionality</li>
+                        <li>Dark mode / Light mode with persistance</li>
+                        <li>Responsive burger menu with smooth animations</li>
+                        <li>Projects filtering system by categories</li>
+                        <li>Section indicator with smooth scroll navigation</li>
+                        <li>Contact form with validation</li>
+                        <li>Maintainable and modular CSS architecture</li>
                     </ul>
                 </div>
 
@@ -48,10 +49,10 @@
                     <h2>Development Specs</h2>
                     <ul>
                         <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6)</li>
-                        <li><strong>Features:</strong> DOM Manipulation, Event Handling</li>
-                        <li><strong>Design:</strong> Responsive Grid, Flexbox</li>
-                        <li><strong>Performance:</strong> Optimized animations</li>
-                        <li><strong>Accessibility:</strong> Semantic HTML, ARIA labels</li>
+                        <li><strong>Features:</strong> DOM Manipulation, Event Delegation, Local Storage</li>
+                        <li><strong>Design:</strong> Mobile-first, Flexbox, Grid Layout</li>
+                        <li><strong>Performance:</strong> CSS Variables, Optimized animations</li>
+                        <li><strong>Accessibility:</strong> Semantic HTML, ARIA labels, Keyboard navigation</li>
                     </ul>
                 </div>
             </div>
@@ -60,9 +61,12 @@
             <div class="project-showcase">
                 <h2>Desktop View</h2>
                 <div class="project-gallery">
-                    <img src="../assets/img/memorygame-desktop-1.png" alt="Memory game home screen">
-                    <img src="../assets/img/memorygame-desktop-2.png" alt="Memory game in progress">
-                    <img src="../assets/img/memorygame-desktop-3.png" alt="Memory game victory screen">
+                    <img src="../assets/img/portfolio/portfoliohero.png" alt="Hero section of portfolio">
+                    <img src="../assets/img/portfolio/portfoliohero_dark.png" alt="Hero section of portfolio in dark mode">
+                    <img src="../assets/img/portfolio/portfolioabout.png" alt="About section of portfolio">
+                    <img src="../assets/img/portfolio/portfolioabout_dark.png" alt="About section of portfolio in dark mode">
+                    <img src="../assets/img/portfolio/portfoliocontact.png" alt="Contact section of portfolio">
+                    <img src="../assets/img/portfolio/portfoliocontact_dark.png" alt="Contact section of portfolio in dark mode">
                 </div>
             </div>
 
@@ -70,14 +74,15 @@
             <div class="project-challenge">
                 <h2>The Challenge</h2>
                 <p>
-                    The main challenge of this project was implementing a robust card-matching algorithm that could handle various edge cases. I needed to prevent users from flipping more than two cards at once, ensure smooth animations, and manage game state effectively.
-                </p>
+                    The main challenge of this project was creating a smooth and professional user experience without relying on any framework. I had to implement all interactive features from scratch: the dark mode system with user preference persistence, the responsive burger menu, and the project filtering system.
+                </p>            
                 <p>
-                    I solved this by implementing a state management system using JavaScript closures and event delegation. The timer function was particularly tricky—I had to ensure it paused during card animations and could be reset cleanly without memory leaks.
-                </p>
+                    The project filtering system was particularly interesting to develop. I implemented a tag-based filtering mechanism that smoothly animates cards in and out when users switch between categories. The challenge was managing the transition states properly—I needed to ensure cards were hidden after the fade-out animation completed, not during it, to avoid janky visual effects.
+                </p>               
                 <p>
-                    Another interesting challenge was creating a shuffle algorithm that guaranteed a solvable game every time. I used the Fisher-Yates algorithm to randomize card positions while maintaining pairs.
+                    The modular CSS architecture was also an exciting challenge. I organized styles into separate files (reset, variables, layout, components, responsive) to facilitate maintenance and future development. Using consistent naming conventions and CSS variables for colors ensures visual coherence throughout the site.
                 </p>
+                <p>I still have one challenge that I didn't manage to fix yet: the flash when switching between pages in dark theme...</p>
             </div>
 
             <!-- Responsive showcase -->
@@ -87,17 +92,17 @@
                 <div class="mobile-mockups">
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame-mobile-1.png" alt="Mobile view home">
+                            <img src="../assets/img/portfolio/portfoliohero_mobile.png" alt="Mobile view home">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame-mobile-2.png" alt="Mobile view game">
+                            <img src="../assets/img/portfolio/portfolioabout_mobile.png" alt="Mobile view game">
                         </div>
                     </div>
                     <div class="mobile-frame">
                         <div class="mobile-screen">
-                            <img src="../assets/img/memorygame-mobile-3.png" alt="Mobile view victory">
+                            <img src="../assets/img/portfolio/portfoliocontact_mobile.png" alt="Mobile view victory">
                         </div>
                     </div>
                 </div>
@@ -105,9 +110,8 @@
 
             <!-- Call to action -->
             <div class="project-cta">
-                <a href="https://memorygame.codebyaurore.fr" class="btn btn-large" target="_blank" rel="noopener noreferrer">
-                    Check it out
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                <a href="../index.html" class="btn btn-large" target="_blank" rel="noopener noreferrer">
+                    You are already checking it!</ion-icon>
                 </a>
             </div>
         </section>
@@ -116,10 +120,10 @@
         <section class="other-projects">
             <h2>Other Projects</h2>
             <div class="projects-grid-mini">
-                <a href="blog.html" class="project-card-mini">
-                    <img src="../assets/img/blog-thumbnail.png" alt="Blog project">
+                <a href="../projects/memorygame.html" class="project-card-mini">
+                    <img src="../assets/img/memorygame/memorygame_playing.png" alt="Blog project">
                     <div class="card-mini-content">
-                        <h3>Blog Platform</h3>
+                        <h3>Memory Game</h3>
                         <p>Full-stack application with Symfony</p>
                     </div>
                 </a>

@@ -163,6 +163,7 @@
     }
 
     .project-details {
+        flex-direction: column;
         gap: 3rem;
         padding: 2rem;
     }
@@ -176,7 +177,6 @@
     }
 
     .project-details {
-        flex-direction: column;
         gap: 2rem;
         padding: 1.5rem;
     }
