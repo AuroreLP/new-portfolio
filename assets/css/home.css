@@ -31,6 +31,29 @@
     margin-bottom: 2rem;
 }
 
+.hero-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-introduction .work-link {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-color);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hero-introduction .work-link:hover{
+    font-weight: bold;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 20px;
+}
+
 /* PROJECTS SECTION */
 .projects, .about, .contact, .privacy-policy, .legal-notices {
     display: flex;

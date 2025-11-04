@@ -322,18 +322,19 @@
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 6px var(--secondary-color);
 }
 
 .project-card-mini:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px var(--secondary-color);
 }
 
 .project-card-mini img {
-    width: 300px;
+    width: auto;
     height: 200px;
-    object-fit: cover;
+    aspect-ratio: 16/9;
+    object-fit: fill;
 }
 
 .card-mini-content {

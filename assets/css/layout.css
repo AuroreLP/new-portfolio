@@ -1,6 +1,10 @@
 /*  =================================
     GLOBAL STYLES
     ================================= */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Ubuntu", sans-serif;
     background-color: var(--bg-color);

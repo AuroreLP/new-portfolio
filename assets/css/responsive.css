@@ -1,19 +1,14 @@
 /*  =================================
-    COMPONENTS
+    Under 500px
     ================================= */
-/* section indicator */
+
 @media (max-width: 500px) {
+    /* section indicator */
     .section-indicator {
         display: none;
     }
-}
 
-/*  =================================
-    HOME PAGE
-    ================================= */
-
-/* HERO SECTION */
-@media (max-width: 500px) {
+    /* HERO SECTION */
     .hero__content {
         position: relative;
         min-height: 100vh; /* occupe la hauteur de l’écran */
@@ -32,6 +27,23 @@
         transform: none;
         text-align: center;
     }
+
+    /* PROJECTS SECTION */
+    .projects__grid {
+        grid-template-columns: 1fr;
+        width: 300px;
+        gap: 1.5rem;
+    }
+    
+    .filter-buttons {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+    }
+    
 }
 
 /* PROJECTS SECTION */
@@ -53,24 +65,6 @@
     }
 }
 
-@media (max-width: 500px) {
-
-    .projects__grid {
-        grid-template-columns: 1fr;
-        width: 300px;
-        gap: 1.5rem;
-    }
-    
-    .filter-buttons {
-        gap: 0.5rem;
-    }
-    
-    .filter-btn {
-        font-size: 0.85rem;
-        padding: 0.4rem 1rem;
-    }
-    
-}
 
 /* ABOUT SECTION */
 @media (max-width: 1200px) {
