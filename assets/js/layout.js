@@ -52,7 +52,7 @@ function loadHeader() {
 }
 
 // Fonction pour charger le footer
-function loadFooter(basePath = '') {
+function loadFooter() {
     const basePath = getBasePath();
     const footerHTML = `
     <footer>
