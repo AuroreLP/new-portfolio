@@ -202,6 +202,7 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
+                    
                     <!-- 🪤 Champ honeypot caché (ne pas renommer en "honeypot") -->
                     <input type="text" id="company" name="company" autocomplete="off" style="display:none">
 
@@ -210,7 +211,11 @@
 
                     <!-- Message utilisateur -->
                     <p id="form-message" class="hidden"></p>
+
+                    <div class="g-recaptcha" data-sitekey="6LcdfgQsAAAAAHkgdmw9Fck-X_LQcbcW0Wey7194"></div>
+
                     <button type="submit" class="btn">Send Message</button>
+                    
                 </form>
             </div>
         </section>   
@@ -222,6 +227,7 @@
     <script src="./assets/js/section-indicator.js"></script>
     <script src="./assets/js/filter-projects.js"></script>
     <script src="./assets/js/contact-form.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>

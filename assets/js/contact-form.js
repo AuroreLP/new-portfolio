@@ -26,8 +26,25 @@ if (form && messageEl) {
       return;
     }
 
+    // Vérifier que reCAPTCHA est validé
+    const recaptchaResponse = grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+      messageEl.textContent = "⚠️ Veuillez cocher la case 'Je ne suis pas un robot'";
+      messageEl.className = "error visible";
+      setTimeout(() => messageEl.className = "hidden", 5000);
+      return;
+    }
+
     // Empêche double clic
     submitBtn.disabled = true;
+
+    // Préparer les données avec le token reCAPTCHA
+    const templateParams = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      'g-recaptcha-response': recaptchaResponse
+    };
 
     // Envoi EmailJS
     emailjs.sendForm('service_l7c5sg4', 'template_bb4jbs8', this)
@@ -35,6 +52,7 @@ if (form && messageEl) {
         messageEl.textContent = "✅ Message envoyé avec succès !";
         messageEl.className = "success visible";
         form.reset();
+        grecaptcha.reset();
         setTimeout(() => messageEl.className = "hidden", 5000);
       })
       .catch(() => {
