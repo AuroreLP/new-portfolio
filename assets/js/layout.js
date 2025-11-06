@@ -1,3 +1,10 @@
+// Détecte le bon chemin de base selon la profondeur du fichier
+function getBasePath() {
+    const path = window.location.pathname;
+    const depth = (path.match(/\//g) || []).length - 1;
+    return depth > 0 ? '../'.repeat(depth) : './';
+}
+
 // Fonction pour charger le header
 function loadHeader() {
     const basePath = getBasePath();
@@ -66,24 +73,16 @@ function loadFooter() {
     document.getElementById('footer-placeholder').outerHTML = footerHTML;
 }
 
-// Auto-détection du basePath selon la structure du site
-function getBasePath() {
-    const path = window.location.pathname;
-    // Si on est dans un sous-dossier (ex: /projects/memorygame.html)
-    const depth = (path.match(/\//g) || []).length - 1;
-    return depth > 0 ? '../'.repeat(depth) : '';
-}
 
 // Chargement automatique au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
     const basePath = getBasePath();
     if (document.getElementById('header-placeholder')) {
-        loadHeader(basePath);
+        loadHeader();
     }
     if (document.getElementById('footer-placeholder')) {
-        loadFooter(basePath);
+        loadFooter();
     }
-    
     // Initialiser les événements après le chargement du header/footer
     initializeHeaderEvents();
 });
