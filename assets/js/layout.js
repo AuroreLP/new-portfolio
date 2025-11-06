@@ -19,7 +19,7 @@ function loadHeader() {
     const headerHTML = `
     <header class="navbar">
         <div class="top-nav">
-            <a href="${basePath}index.html" class="logo">
+            <a href="${basePath}index.html#hero" class="logo">
                 <img id="logo" src="${basePath}assets/img/logo AL dark.png" alt="Logo" loading="lazy">
             </a>
             <button class="burger" aria-label="Menu">
@@ -32,7 +32,7 @@ function loadHeader() {
     
     <div class="menu-overlay">
         <ul>
-            <li><a href="${basePath}index.html">Home</a></li>
+            <li><a href="${basePath}index.html#hero">Home</a></li>
             <li><a href="${basePath}index.html#projects">Projects</a></li>
             <li><a href="${basePath}index.html#about">About</a></li>
             <li><a href="${basePath}index.html#contact">Contact</a></li>
