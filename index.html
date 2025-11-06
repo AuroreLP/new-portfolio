@@ -184,7 +184,7 @@
         <section id="contact" class="contact">
             <h2>Contact Me</h2>
             <div class="contact-container">
-                <form action="#" method="post" class="contact-form" id="contact-form">
+                <form action="#contact" method="post" class="contact-form" id="contact-form">
                     <div class="container-left">
                         <label for="firstname">Firstname</label>
                         <input type="text" id="firstname" name="firstname" required>
@@ -202,9 +202,14 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <div>
-                        <p id="form-message" class="hidden"></p>
-                    </div>
+                    <!-- 🪤 Champ honeypot caché (ne pas renommer en "honeypot") -->
+                    <input type="text" id="company" name="company" autocomplete="off" style="display:none">
+
+                    <!-- ⏱️ Champ pour enregistrer le moment du chargement -->
+                    <input type="hidden" id="form_start" name="form_start">
+
+                    <!-- Message utilisateur -->
+                    <p id="form-message" class="hidden"></p>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
