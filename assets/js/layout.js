@@ -53,10 +53,11 @@ function loadHeader(basePath = '') {
 function loadFooter(basePath = '') {
     const footerHTML = `
     <footer>
-        <p>© Aurore Le Perff 2025 — 
-            <a href="${basePath}legal-notices.html">Legal Notices</a> — 
+        <div class="footer-elements">
+            <p>© Aurore Le Perff 2025</p>
+            <a href="${basePath}legal-notices.html">Legal Notices</a> 
             <a href="${basePath}privacy-policy.html">Privacy Policy</a>
-        </p>
+        </div>
     </footer>`;
     
     document.getElementById('footer-placeholder').outerHTML = footerHTML;

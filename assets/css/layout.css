@@ -81,6 +81,23 @@ footer {
     border-top: 1px solid #ddd;
     padding-top: 1rem;
     font-size: 0.9rem;
-    text-align: center;
+
+}
+
+.footer-elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     margin-bottom: 1rem;
 }
+
+.footer-elements a {
+    cursor: pointer;
+}
+
+.footer-elements a:hover {
+    scale: calc(1.1);
+    color: var(--secondary-color);
+}
+

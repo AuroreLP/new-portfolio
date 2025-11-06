@@ -1,17 +1,64 @@
 /*  =================================
-    Under 500px
+    GLOBAL / UTILITIES
     ================================= */
+@media (max-width: 1200px) {
+        section {
+            padding: 3rem 1rem;
+        }
+    }
 
 @media (max-width: 500px) {
+    .footer-elements {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+    
+}
+
+    /*  =================================
+    HEADER & SOCIALS
+    ================================= */
+@media (max-width: 500px) {
+    .section-socials {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-top: 2.5rem;
+    }
+
+    .socials-logo {
+        writing-mode: horizontal-tb;
+        margin: 0;
+        z-index: 10000;
+    }
+    
     /* section indicator */
     .section-indicator {
         display: none;
     }
+}
 
+/*  =================================
+    HERO SECTION
+    ================================= */
+@media (max-width: 600px) {
+    .hero-links {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
     /* HERO SECTION */
     .hero__content {
         position: relative;
-        min-height: 100vh; /* occupe la hauteur de l’écran */
+        /* min-height: 100vh; */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -27,35 +74,12 @@
         transform: none;
         text-align: center;
     }
-
-    /* PROJECTS SECTION */
-    .projects__grid {
-        grid-template-columns: 1fr;
-        width: 300px;
-        gap: 1.5rem;
-    }
-    
-    .filter-buttons {
-        gap: 0.5rem;
-    }
-    
-    .filter-btn {
-        font-size: 0.85rem;
-        padding: 0.4rem 1rem;
-    }
-    
 }
 
-/* PROJECTS SECTION */
-@media (max-width: 1200px) {
 
-    .projects__grid {
-        grid-template-columns: repeat(2, 1fr);
-        width: 700px;
-        gap: 1.5rem;
-    }
-}
-
+/*  =================================
+    PROJECTS SECTION
+    ================================= */
 @media (max-width: 900px) {
 
     .projects__grid {
@@ -66,7 +90,9 @@
 }
 
 
-/* ABOUT SECTION */
+    /*  =================================
+    ABOUT SECTION
+    ================================= */
 @media (max-width: 1200px) {
     .about-container {
         width: 700px;
@@ -108,8 +134,29 @@
     }
 }
 
-/* CONTACT SECTION */
-@media (max-width: 850px) {
+@media (max-width: 500px) {
+    .projects__grid {
+        grid-template-columns: 1fr;
+        width: 300px;
+        gap: 1.5rem;
+    }
+    
+    .filter-buttons {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+    }
+}
+
+
+
+/*  =================================
+    CONTACT SECTION
+    ================================= */
+@media (max-width: 900px) {
     .contact {
         padding: 4rem 1.5rem;
         width: 70%;
@@ -130,7 +177,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
     .contact-form {
         gap: 1rem;
     }
@@ -147,10 +194,18 @@
     }
 }
 
+    /*  =================================
+        SINGLE-PROJECTS
+        ================================= */
+@media (max-width: 1200px) {
 
-/*  =================================
-    SINGLE PROJECT PAGE
-    ================================= */
+    .projects__grid {
+        grid-template-columns: repeat(2, 1fr);
+        width: 700px;
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 1100px) {
     .project-single {
         max-width: 600px;
@@ -199,6 +254,20 @@
 
 @media (max-width: 500px) {
     .project-single {
-        max-width: 250px;
+        max-width: 300px;
     }
 }
+
+
+    /*  =================================
+    LEGAL PAGES
+    ================================= */
+
+
+
+
+
+
+
+
+
