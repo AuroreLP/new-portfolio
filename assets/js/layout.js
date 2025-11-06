@@ -107,6 +107,7 @@ function initializeHeaderEvents() {
     
     if (darkBtn) {
         const icon = darkBtn.querySelector('ion-icon');
+        const logo = document.getElementById('logo');
         
         // Appliquer le thème sauvegardé au chargement
         const savedTheme = localStorage.getItem('theme');
@@ -117,6 +118,7 @@ function initializeHeaderEvents() {
             if (icon) icon.setAttribute('name', 'sunny-outline');
         } else {
             if (icon) icon.setAttribute('name', 'moon-outline');
+            if (logo) logo.src = `${getBasePath()}assets/img/logo-AL-dark.png`;
         }
 
         // Gérer le clic
@@ -128,6 +130,13 @@ function initializeHeaderEvents() {
             // Changer l'icône selon le thème
             if (icon) {
                 icon.setAttribute('name', isDark ? 'sunny-outline' : 'moon-outline');
+            }
+
+                        // 🔥 Changer le logo selon le thème
+            if (logo) {
+                logo.src = isDark
+                    ? `${getBasePath()}assets/img/logo-AL-white.png`
+                    : `${getBasePath()}assets/img/logo-AL-dark.png`;
             }
         });
     }

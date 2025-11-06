@@ -23,7 +23,3 @@ body.dark-mode {
     --hover-text-color: #202C39;
     --bg-card: #202C39;
 }
-
-.dark-mode #logo {
-    content: url('../img/logo AL white.png');
-}
