@@ -1,8 +1,10 @@
 // Détecte le bon chemin de base selon la profondeur du fichier
 function getBasePath() {
     const path = window.location.pathname;
-    const depth = (path.match(/\//g) || []).length - 1;
-    return depth > 0 ? '../'.repeat(depth) : './';
+    // Si on est sur la racine (index.html ou /)
+    if (path.endsWith('/') || path.endsWith('index.html')) return './';
+    // Sinon on est dans un sous-dossier (ex: /projects/memorygame.html)
+    return '../';
 }
 
 // Fonction pour charger le header
@@ -23,11 +25,12 @@ function loadHeader() {
         <a href="#contact" aria-label="Go to contact section"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
     </div>` : '';
     
+    // Structure du header
     const headerHTML = `
     <header class="navbar">
         <div class="top-nav">
             <a href="${basePath}index.html#hero" class="logo">
-                <img id="logo" src="${basePath}assets/img/logo AL dark.png" alt="Logo" loading="lazy">
+                <img id="logo" src="${basePath}assets/img/logo-AL-dark.png" alt="Logo" loading="lazy">
             </a>
             <button class="burger" aria-label="Menu">
                 <span></span>
@@ -55,7 +58,11 @@ function loadHeader() {
     </div>
     ${sectionIndicator}`;
     
+    // Injection du header dans le DOM
     document.getElementById('header-placeholder').outerHTML = headerHTML;
+
+    // 🔥 Initialisation des événements (menu + dark mode)
+    initializeHeaderEvents();
 }
 
 // Fonction pour charger le footer
@@ -73,19 +80,6 @@ function loadFooter() {
     document.getElementById('footer-placeholder').outerHTML = footerHTML;
 }
 
-
-// Chargement automatique au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
-    const basePath = getBasePath();
-    if (document.getElementById('header-placeholder')) {
-        loadHeader();
-    }
-    if (document.getElementById('footer-placeholder')) {
-        loadFooter();
-    }
-    // Initialiser les événements après le chargement du header/footer
-    initializeHeaderEvents();
-});
 
 // Fonction pour initialiser les événements du header après son chargement
 function initializeHeaderEvents() {
@@ -138,3 +132,10 @@ function initializeHeaderEvents() {
         });
     }
 }
+
+
+// Exécution automatique après chargement du DOM
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('header-placeholder')) loadHeader();
+    if (document.getElementById('footer-placeholder')) loadFooter();
+});
