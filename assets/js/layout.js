@@ -1,9 +1,11 @@
 // Fonction pour charger le header
-function loadHeader(basePath = '') {
+function loadHeader() {
+    const basePath = getBasePath();
     // Détecte si on est sur la homepage
-    const isHomepage = window.location.pathname.endsWith('/') || 
-                       window.location.pathname.endsWith('index.html') ||
-                       window.location.pathname === '/';
+    const isHomepage =
+        window.location.pathname.endsWith('/') ||
+        window.location.pathname.endsWith('index.html') ||
+        window.location.pathname === '/';
     
     // Section indicator uniquement pour la homepage
     const sectionIndicator = isHomepage ? `
@@ -51,6 +53,7 @@ function loadHeader(basePath = '') {
 
 // Fonction pour charger le footer
 function loadFooter(basePath = '') {
+    const basePath = getBasePath();
     const footerHTML = `
     <footer>
         <div class="footer-elements">
