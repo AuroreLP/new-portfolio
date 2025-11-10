@@ -1,101 +1,132 @@
 // Détecte le bon chemin de base selon la profondeur du fichier
 function getBasePath() {
     const path = window.location.pathname;
-    // Si on est sur la racine (index.html ou /)
     if (path.endsWith('/') || path.endsWith('index.html')) return './';
-    // Sinon on est dans un sous-dossier (ex: /projects/memorygame.html)
     return '../';
 }
 
-// Fonction pour charger le header
-function loadHeader() {
+// Fonction pour mettre à jour tous les logos
+function updateAllLogos(isDark) {
     const basePath = getBasePath();
-    // Détecte si on est sur la homepage
+    const logoSrc = isDark 
+        ? `${basePath}assets/img/logo-AL-white.png`
+        : `${basePath}assets/img/logo-AL-dark.png`;
+    
+    document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
+        if (logo) logo.src = logoSrc;
+    });
+}
+
+// Fonction pour corriger les liens selon le chemin
+function fixLinks() {
+    const basePath = getBasePath();
+    
+    // Corriger tous les liens du header et footer
+    document.querySelectorAll('a[href^="./"]').forEach(link => {
+        const href = link.getAttribute('href');
+        link.setAttribute('href', href.replace('./', basePath));
+    });
+    
+    // Corriger les logos
+    document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
+        const src = logo.getAttribute('src');
+        logo.setAttribute('src', src.replace('./', basePath));
+    });
+}
+
+// Fonction pour afficher le section indicator uniquement sur la homepage
+function showSectionIndicator() {
     const isHomepage =
         window.location.pathname.endsWith('/') ||
         window.location.pathname.endsWith('index.html') ||
         window.location.pathname === '/';
     
-    // Section indicator uniquement pour la homepage
-    const sectionIndicator = isHomepage ? `
-    <div class="section-indicator">
-        <a href="#hero" aria-label="Go to hero section"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
-        <a href="#projects" aria-label="Go to projects section"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
-        <a href="#about" aria-label="Go to about section"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
-        <a href="#contact" aria-label="Go to contact section"><ion-icon class="section-icon" name="ellipse-outline"></ion-icon></a>
-    </div>` : '';
-    
-    // Structure du header
-    const headerHTML = `
-    <header class="navbar">
-        <div class="top-nav">
-            <a href="${basePath}index.html#hero" class="logo">
-                <img id="logo" src="${basePath}assets/img/logo-AL-dark.png" alt="Logo" loading="lazy">
-            </a>
-            <button class="burger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-    
-    <div class="menu-overlay">
-        <ul>
-            <li><a href="${basePath}index.html#hero">Home</a></li>
-            <li><a href="${basePath}index.html#projects">Projects</a></li>
-            <li><a href="${basePath}index.html#about">About</a></li>
-            <li><a href="${basePath}index.html#contact">Contact</a></li>
-        </ul>
-    </div>
-    
-    <div class="section-socials">
-        <div class="github"><a href="https://github.com/AuroreLP" target="_blank" aria-label="GitHub"><ion-icon class="socials-logo" name="logo-github"></ion-icon></a></div>
-        <div class="linkedin"><a href="https://www.linkedin.com/in/aurore-le-perff/" target="_blank" aria-label="LinkedIn"><ion-icon class="socials-logo" name="logo-linkedin"></ion-icon></a></div>
-        <div id="darkBtn">
-            <ion-icon class="socials-logo darkBtn" name="moon-outline" aria-label="Darkor Light mode"></ion-icon>
-        </div>
-    </div>
-    ${sectionIndicator}`;
-    
-    // Injection du header dans le DOM
-    document.getElementById('header-placeholder').outerHTML = headerHTML;
-
-    // 🔥 Initialisation des événements (menu + dark mode)
-    initializeHeaderEvents();
+    const sectionIndicator = document.querySelector('.section-indicator');
+    if (sectionIndicator && isHomepage) {
+        sectionIndicator.style.display = 'block';
+    }
 }
 
-// Fonction pour charger le footer
-function loadFooter() {
+// 🔥 Fonction pour détecter quelle section est visible
+function updateSectionIndicator() {
+    const sections = document.querySelectorAll('section[id]');
+    const indicators = document.querySelectorAll('.section-indicator a');
+    
+    if (!sections.length || !indicators.length) return;
+    
+    // Observer les sections
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                
+                // Retirer la classe active de tous les indicateurs
+                indicators.forEach(indicator => {
+                    const icon = indicator.querySelector('.section-icon');
+                    indicator.classList.remove('active');
+                    if (icon) icon.setAttribute('name', 'ellipse-outline');
+                });
+                
+                // Ajouter la classe active à l'indicateur correspondant
+                const activeIndicator = document.querySelector(`.section-indicator a[data-section="${sectionId}"]`);
+                if (activeIndicator) {
+                    activeIndicator.classList.add('active');
+                    const activeIcon = activeIndicator.querySelector('.section-icon');
+                    if (activeIcon) activeIcon.setAttribute('name', 'star');
+                }
+            }
+        });
+    }, {
+        threshold: 0.5 // La section doit être visible à 50% pour être considérée active
+    });
+    
+    // Observer toutes les sections
+    sections.forEach(section => observer.observe(section));
+}
+
+// Charger le header
+async function loadHeader() {
     const basePath = getBasePath();
-    const footerHTML = `
-    <footer>
-        <div class="footer-elements">
-            <div class="footer-logo">
-                <a href="${basePath}index.html#hero" class="logo">
-                    <img id="logo" src="${basePath}assets/img/logo-AL-dark.png" alt="Logo" loading="lazy">
-                </a>
-            </div>
-            <div class="footer-links">
-                <a href="${basePath}index.html#projects">Projects</a>
-                <a href="${basePath}index.html#about">About</a>
-                <a href="${basePath}index.html#contact">Contact</a>
-            </div>
-            <div class="footer-legal">
-                <a href="${basePath}legal-notices.html">Legal Notices</a> 
-                <a href="${basePath}privacy-policy.html">Privacy Policy</a>
-            </div>
-            <div class="footer-legal">
-                <p>© Aurore Le Perff 2025</p>
-            </div>
-        </div>
-    </footer>`;
-    
-    document.getElementById('footer-placeholder').outerHTML = footerHTML;
+    try {
+        const response = await fetch(`${basePath}header.html`);
+        const html = await response.text();
+        document.getElementById('header-placeholder').outerHTML = html;
+        
+        fixLinks();
+        showSectionIndicator();
+        initializeHeaderEvents();
+    } catch (error) {
+        console.error('Erreur chargement header:', error);
+    }
 }
 
+// Charger le footer
+async function loadFooter() {
+    const basePath = getBasePath();
+    try {
+        const response = await fetch(`${basePath}footer.html`);
+        const html = await response.text();
+        document.getElementById('footer-placeholder').outerHTML = html;
+        
+        fixLinks();
+    } catch (error) {
+        console.error('Erreur chargement footer:', error);
+    }
+}
 
-// Fonction pour initialiser les événements du header après son chargement
+// Fonction pour appliquer le thème au chargement
+function applyThemeOnLoad() {
+    const savedTheme = localStorage.getItem('theme');
+    const isDarkMode = savedTheme === 'dark';
+    
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    
+    updateAllLogos(isDarkMode);
+}
+
+// Initialiser les événements du header
 function initializeHeaderEvents() {
     // BURGER MENU TOGGLE
     const burger = document.querySelector('.burger');
@@ -121,44 +152,38 @@ function initializeHeaderEvents() {
     
     if (darkBtn) {
         const icon = darkBtn.querySelector('ion-icon');
-        const logo = document.getElementById('logo');
-        
-        // Appliquer le thème sauvegardé au chargement
         const savedTheme = localStorage.getItem('theme');
         const isDarkMode = savedTheme === 'dark';
-
-        if (isDarkMode) {
-            document.body.classList.add('dark-mode');
-            if (icon) icon.setAttribute('name', 'sunny-outline');
-        } else {
-            if (icon) icon.setAttribute('name', 'moon-outline');
-            if (logo) logo.src = `${getBasePath()}assets/img/logo-AL-dark.png`;
+        
+        if (icon) {
+            icon.setAttribute('name', isDarkMode ? 'sunny-outline' : 'moon-outline');
         }
 
-        // Gérer le clic
         darkBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-            // Changer l'icône selon le thème
             if (icon) {
                 icon.setAttribute('name', isDark ? 'sunny-outline' : 'moon-outline');
             }
 
-                        // 🔥 Changer le logo selon le thème
-            if (logo) {
-                logo.src = isDark
-                    ? `${getBasePath()}assets/img/logo-AL-white.png`
-                    : `${getBasePath()}assets/img/logo-AL-dark.png`;
-            }
+            updateAllLogos(isDark);
         });
     }
+
+    // SECTION INDICATOR
+    updateSectionIndicator();
 }
 
-
-// Exécution automatique après chargement du DOM
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('header-placeholder')) loadHeader();
-    if (document.getElementById('footer-placeholder')) loadFooter();
+// 🔥 Exécution automatique
+document.addEventListener('DOMContentLoaded', async () => {
+    // Charger header et footer
+    if (document.getElementById('header-placeholder')) await loadHeader();
+    if (document.getElementById('footer-placeholder')) await loadFooter();
+    
+    // Appliquer le thème après chargement
+    setTimeout(() => {
+        applyThemeOnLoad();
+    }, 100);
 });
