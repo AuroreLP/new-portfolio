@@ -53,7 +53,7 @@ function loadHeader() {
         <div class="github"><a href="https://github.com/AuroreLP" target="_blank" aria-label="GitHub"><ion-icon class="socials-logo" name="logo-github"></ion-icon></a></div>
         <div class="linkedin"><a href="https://www.linkedin.com/in/aurore-le-perff/" target="_blank" aria-label="LinkedIn"><ion-icon class="socials-logo" name="logo-linkedin"></ion-icon></a></div>
         <div id="darkBtn">
-            <ion-icon class="socials-logo darkBtn" name="moon-outline"></ion-icon>
+            <ion-icon class="socials-logo darkBtn" name="moon-outline" aria-label="Darkor Light mode"></ion-icon>
         </div>
     </div>
     ${sectionIndicator}`;
@@ -71,9 +71,23 @@ function loadFooter() {
     const footerHTML = `
     <footer>
         <div class="footer-elements">
-            <p>© Aurore Le Perff 2025</p>
-            <a href="${basePath}legal-notices.html">Legal Notices</a> 
-            <a href="${basePath}privacy-policy.html">Privacy Policy</a>
+            <div class="footer-logo">
+                <a href="${basePath}index.html#hero" class="logo">
+                    <img id="logo" src="${basePath}assets/img/logo-AL-dark.png" alt="Logo" loading="lazy">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="${basePath}index.html#projects">Projects</a>
+                <a href="${basePath}index.html#about">About</a>
+                <a href="${basePath}index.html#contact">Contact</a>
+            </div>
+            <div class="footer-legal">
+                <a href="${basePath}legal-notices.html">Legal Notices</a> 
+                <a href="${basePath}privacy-policy.html">Privacy Policy</a>
+            </div>
+            <div class="footer-legal">
+                <p>© Aurore Le Perff 2025</p>
+            </div>
         </div>
     </footer>`;
     

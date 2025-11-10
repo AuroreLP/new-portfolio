@@ -87,17 +87,25 @@ footer {
 .footer-elements {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 0 3rem 1rem 3rem;
 }
 
-.footer-elements a {
+.footer-project li a, 
+.footer-legal a {
     cursor: pointer;
 }
 
-.footer-elements a:hover {
+.footer-links a:hover,
+.footer-legal a:hover {
     scale: calc(1.1);
     color: var(--secondary-color);
+}
+
+.footer-links,
+.footer-legal {
+    display: flex;
+    flex-direction: column;
 }
 

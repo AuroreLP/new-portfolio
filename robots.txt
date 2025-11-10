@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Empêcher l'indexation des ressources techniques
+Disallow: /assets/
+Disallow: /tp_single-project.html
+Disallow: /*.json$
+
+# Lien vers le sitemap
+Sitemap: https://aurorelp.github.io/sitemap.xml
