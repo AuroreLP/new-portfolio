@@ -45,12 +45,13 @@
                 <div class="project-features">
                     <h2>Features</h2>
                     <ul>
-                        <li>Complete CRUD system for articles, categories and tags</li>
-                        <li>Admin dashboard with statistics</li>
-                        <li>Comment management with moderation system</li>
-                        <li>Dynamic filtering by categories and tags</li>
-                        <li>Secure authentication system</li>
-                        <li>Responsive design with SASS/SCSS</li>
+                        <li>Complete CRUD system for articles, categories, tags and comments</li>
+                        <li>Role-based admin dashboard with statistics</li>
+                        <li>Comment system with moderation and deletion capabilities</li>
+                        <li>Dynamic frontend filtering by category and tag using vanilla JavaScript</li>
+                        <li>Secure authentication and access control (ROLE_ADMIN)</li>
+                        <li>Hybrid database setup: relational content in MySQL and messages in MongoDB</li>
+                        <li>Responsive design implemented with Sass</li>
                     </ul>
                 </div>
 
@@ -58,11 +59,11 @@
                     <h2>Development Specs</h2>
                     <ul>
                         <li><strong>Backend:</strong> Symfony 7, PHP 8.2+</li>
-                        <li><strong>Database:</strong> MySQL/MariaDB, MongoDB</li>
-                        <li><strong>Frontend:</strong> Twig, SASS/SCSS, JavaScript (ES6)</li>
-                        <li><strong>Infrastructure:</strong> Docker, Docker Compose</li>
+                        <li><strong>Database:</strong> MySQL/MariaDB (content), MongoDB (messages)</li>
+                        <li><strong>Frontend:</strong> Twig templates, Sass (modular structure), JavaScript (ES6+)</li>
+                        <li><strong>Infrastructure:</strong> Docker, Docker Compose with Makefile automation</li>
                         <li><strong>Testing:</strong> PHPUnit</li>
-                        <li><strong>Security:</strong> Symfony Security Bundle, CSRF Protection</li>
+                        <li><strong>Security:</strong> Symfony Security component, CSRF protection, role-based access control</li>
                     </ul>
                 </div>
             </div>
@@ -93,16 +94,16 @@
             <div class="project-challenge">
                 <h2>The Challenge</h2>
                 <p>
-                    The main challenge of this project was creating a robust and scalable content management system while maintaining a clear separation between the public interface and administration. I had to implement a granular permission system to secure access to different dashboard sections.
+                    The main challenge of this project was building a complete blogging platform with a clear separation between the public interface and the administration panel. I implemented a secure role-based access control system to restrict administrative features to authorized users only.
                 </p>
                 <p>
-                    Managing relationships between entities (Articles, Categories, Tags, Comments) with Doctrine ORM required particular attention to optimize queries and avoid the N+1 problem. I used custom joins in repositories to efficiently load associated data.
+                    Managing the relationships between entities — Articles, Categories, Tags, and Comments — with Doctrine ORM required careful structuring to keep the code maintainable and queries efficient. MySQL was used for the main relational data, while MongoDB handled user messages, offering a flexible and scalable hybrid database setup.
                 </p>
                 <p>
-                    Docker integration also presented interesting challenges, particularly for volume synchronization and database migration management. I created a Makefile to automate common tasks (build, migrations, fixtures) and facilitate onboarding for new developers.
+                    On the frontend, I implemented a dynamic filtering system using vanilla JavaScript to fetch and display articles by category or tag without reloading the page, improving user experience and performance.
                 </p>
                 <p>
-                    The dynamic filtering system (categories and tags) on the frontend was implemented with vanilla JavaScript to improve user experience without page reloads, while maintaining a functional fallback if JavaScript is disabled.
+                    Containerization was also a major aspect of the project. I set up a Docker environment for both development and production, and created a Makefile to simplify common tasks such as starting, stopping, and rebuilding containers. This made the setup process much faster and ensured a consistent environment across different machines.
                 </p>
             </div>
 
