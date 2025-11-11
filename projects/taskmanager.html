@@ -47,14 +47,14 @@
                 <div class="project-features">
                     <h2>Features</h2>
                     <ul>
-                        <li>User authentication and session management</li>
+                        <li>User authentication and secure session management</li>
                         <li>CRUD operations for domains, projects, and tasks</li>
                         <li>Dashboard with key statistics</li>
-                        <li>Task completion and focus mode</li>
-                        <li>Editable user profile and settings</li>
-                        <li>Secure password hashing and validation</li>
-                        <li>Data persistence via MySQL</li>
-                        <li>Responsive layout (mobile-first design)</li>
+                        <li>Task tracking and completion status</li>
+                        <li>Editable user profile and account settings</li>
+                        <li>Secure password hashing and input validation</li>
+                        <li>Data persistence through MySQL and PDO</li>
+                        <li>Responsive, mobile-first layout (Bootstrap 5)</li>
                     </ul>
                 </div>
 
@@ -65,7 +65,7 @@
                         <li><strong>Backend:</strong> PHP 8, PDO for secure database access</li>
                         <li><strong>Database:</strong> MySQL</li>
                         <li><strong>Deployment:</strong> Docker & Nginx</li>
-                        <li><strong>Architecture:</strong> MVC-inspired</li>
+                        <li><strong>Architecture:</strong> MVC-inspired modular design</li>
                     </ul>
                 </div>
             </div>
@@ -89,16 +89,26 @@
                 <h2>The Challenge</h2>
                 <p>
                     One of the main challenges was designing a modular and maintainable PHP architecture
-                    that could handle multiple entities (users, domains, projects, and tasks) without code duplication.
+                    capable of managing multiple entities (users, domains, projects, and tasks)
+                    without duplicating logic or compromising scalability.
                 </p>
                 <p>
-                    Managing database access securely was also key — I used <strong>PDO prepared statements</strong> 
-                    to prevent SQL injection and created a centralized connection file (`src/pdo.php`).
+                    I built a centralized PDO connection layer (src/pdo.php) and used
+                    prepared statements across all queries to ensure strong protection against SQL injection.
+                    Each feature module (authentication, projects, tasks, settings, etc.) interacts with the database
+                    through this secure interface.
                 </p>
                 <p>
-                    Dockerizing the application added another layer of complexity: separating environments (dev/prod),
-                    configuring <strong>Nginx</strong> for both, and ensuring <strong>database persistence</strong> via volumes.
+                    Data validation and session management were also key concerns.
+                    User input is carefully validated before insertion, and sessions are configured
+                    with HTTP-only cookies and SameSite protection to prevent common attacks.
                 </p>
+                <p>
+                    Dockerizing the application introduced additional complexity:
+                    setting up separate development and production environments,
+                    configuring Nginx for each, and ensuring persistent database storage through volumes.
+                </p>
+                </div>
             </div>
 
             <!-- Responsive showcase -->
