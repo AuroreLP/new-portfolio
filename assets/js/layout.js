@@ -139,6 +139,50 @@ function initializeHeaderEvents() {
             menuOverlay.classList.toggle('active');
         });
 
+        // Keyboard navigation sur le burger (Enter et Space)
+        burger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                burger.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+            }
+        });
+
+        // Fermer avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+                burger.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            }
+        });
+
+        // Focus trap dans le menu (empêche de tabber en dehors)
+        menuOverlay.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                const focusableElements = menuOverlay.querySelectorAll(
+                    'a[href], button:not([disabled])'
+                );
+                
+                if (focusableElements.length === 0) return;
+                
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                // Tab sur le dernier élément → retour au premier
+                if (!e.shiftKey && document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+                
+                // Shift+Tab sur le premier élément → aller au dernier
+                if (e.shiftKey && document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            }
+        });
+
+        // fermeture sur click des liens
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 burger.classList.remove('active');
