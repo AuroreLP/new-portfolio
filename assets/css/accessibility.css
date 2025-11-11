@@ -1,0 +1,26 @@
+/* Focus indicators pour keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+.filter-btn:focus-visible {
+    outline: 2px solid var(--accent-color, #EA638C);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Focus sur le burger menu */  
+.burger:focus-visible {
+    outline: 2px solid var(--accent-color, #EA638C);
+    outline-offset: 5px;
+}
+
+/* Focus sur les liens de navigation */
+.menu-overlay a:focus-visible {
+    outline: 2px solid var(--accent-color, #EA638C);
+    outline-offset: 2px;
+}
+
+/* Supprimer l'outline par défaut seulement si on utilise focus-visible */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+    outline: none;
+}   
