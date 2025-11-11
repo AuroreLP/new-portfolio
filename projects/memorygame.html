@@ -57,12 +57,12 @@
                 <div class="project-specs">
                     <h2>Development Specs</h2>
                     <ul>
-                        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6)</li>
+                        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+)</li>
                         <li><strong>Features:</strong> DOM Manipulation, Event Handling</li>
                         <li><strong>Design:</strong> Responsive Grid, Flexbox</li>
                         <li><strong>Performance:</strong> Optimized animations</li>
                         <li><strong>Accessibility:</strong> Semantic HTML, ARIA labels</li>
-                        <li><strong>Deployed</strong> with Github pages</li>
+                        <li>Hosted on GitHub Pages with global CDN and automatic SSL</li>
                     </ul>
                 </div>
             </div>
@@ -83,13 +83,13 @@
             <div class="project-challenge">
                 <h2>The Challenge</h2>
                 <p>
-                    The main challenge of this project was implementing a robust card-matching algorithm that could handle various edge cases. I needed to prevent users from flipping more than two cards at once, ensure smooth animations, and manage game state effectively.
+                    The main challenge of this project was implementing a robust card-matching system that could handle various interaction edge cases. I needed to prevent users from flipping more than two cards at once, ensure smooth animations, and keep the game state consistent across interactions. I solved this by designing a clear state management structure within the <code>MemoryGame</code> class, using logical locks and card state flags.
                 </p>
                 <p>
-                    I solved this by implementing a state management system using JavaScript closures and event delegation. The timer function was particularly tricky—I had to ensure it paused during card animations and could be reset cleanly without memory leaks.
+                    The timer feature also required careful handling: it updates in real time and automatically pauses during animations, ensuring accurate timing without performance issues or memory leaks.
                 </p>
                 <p>
-                    Another interesting challenge was creating a shuffle algorithm that guaranteed a solvable game every time. I used the Fisher-Yates algorithm to randomize card positions while maintaining pairs.
+                    For card randomization, I used a simple array shuffle based on <code>Math.random()</code>, which provides enough variety for casual play. Accessibility was another key focus — each card is keyboard-navigable and can be flipped using the Enter or Space keys, making the game enjoyable for all players.
                 </p>
             </div>
 
