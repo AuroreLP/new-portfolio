@@ -14,7 +14,7 @@ if (form && messageEl) {
   // Fonctions utilitaires
   // -----------------------------
 
-  // Affichage des erreurs / succès
+  // Affichage des messages
   function showMessage(text, type = 'error') {
     messageEl.textContent = text;
     messageEl.className = `${type} visible`;
@@ -39,35 +39,24 @@ if (form && messageEl) {
     return { valid: true };
   }
 
-  // Sanitization des champs
+  // Nettoyage des champs
   function sanitizeInput(input) {
     const div = document.createElement('div');
     div.textContent = input;
-    let sanitized = div.innerHTML
-      .replace(/[<>]/g, '')
-      .trim();
-
+    let sanitized = div.innerHTML.replace(/[<>]/g, '').trim();
     const MAX_LENGTH = 5000;
-    if (sanitized.length > MAX_LENGTH) {
-      sanitized = sanitized.substring(0, MAX_LENGTH);
-    }
-    return sanitized;
+    return sanitized.length > MAX_LENGTH ? sanitized.substring(0, MAX_LENGTH) : sanitized;
   }
 
   // Rate limiting localStorage
   function checkRateLimit() {
     const now = Date.now();
     let submissions = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || '[]');
-
-    // Garder seulement celles dans la fenêtre de temps
     submissions = submissions.filter(time => now - time < TIME_WINDOW);
 
     if (submissions.length >= MAX_SUBMISSIONS) {
       const retryMinutes = Math.ceil((TIME_WINDOW - (now - submissions[0])) / 60000);
-      return {
-        allowed: false,
-        message: `Trop de soumissions. Réessayez dans ${retryMinutes} minute(s).`
-      };
+      return { allowed: false, message: `Trop de soumissions. Réessayez dans ${retryMinutes} minute(s).` };
     }
 
     submissions.push(now);
@@ -78,74 +67,82 @@ if (form && messageEl) {
   // -----------------------------
   // Gestion du formulaire
   // -----------------------------
-
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    const honeypot = document.getElementById('company');
-    const submitBtn = form.querySelector("button[type=submit]");
-    const startTime = parseInt(startField.value, 10);
-    const elapsed = Date.now() - startTime;
+    try {
+      const honeypot = document.getElementById('website_url'); // ✅ champ honeypot
+      const submitBtn = form.querySelector("button[type=submit]");
+      const startTime = parseInt(startField.value, 10);
+      const elapsed = Date.now() - startTime;
 
-    // Protection anti-bot : honeypot rempli ?
-    if (honeypot && honeypot.value.trim() !== '') {
-      console.warn("Bot détecté (honeypot rempli)");
-      return;
-    }
+      // 🪤 Honeypot
+      if (honeypot && honeypot.value.trim() !== '') {
+        console.warn("Bot détecté (honeypot rempli)");
+        return;
+      }
 
-    // Protection : temps de remplissage trop court (<2s)
-    if (elapsed < 2000) {
-      console.warn("Bot détecté (trop rapide)");
-      return;
-    }
+      // ⏱️ Temps de remplissage trop court
+      if (elapsed < 2000) {
+        console.warn("Bot détecté (trop rapide)");
+        return;
+      }
 
-    // Rate limiting
-    const rateLimit = checkRateLimit();
-    if (!rateLimit.allowed) {
-      showMessage(rateLimit.message, 'error');
-      return;
-    }
+      // 🔁 Rate limiting
+      const rateLimit = checkRateLimit();
+      if (!rateLimit.allowed) {
+        showMessage(rateLimit.message, 'error');
+        return;
+      }
 
-    // Validation email
-    const emailValidation = validateEmail(form.email.value);
-    if (!emailValidation.valid) {
-      showMessage(emailValidation.error, 'error');
-      return;
-    }
+      // 📧 Validation email
+      const emailValidation = validateEmail(form.email.value);
+      if (!emailValidation.valid) {
+        showMessage(emailValidation.error, 'error');
+        return;
+      }
 
-    // Vérifier que reCAPTCHA est validé
-    const recaptchaResponse = grecaptcha.getResponse();
-    if (!recaptchaResponse) {
-      showMessage("⚠️ Veuillez cocher la case 'Je ne suis pas un robot'", 'error');
-      return;
-    }
+      // 🧠 Vérification reCAPTCHA
+      if (typeof grecaptcha === 'undefined') {
+        showMessage("Erreur : reCAPTCHA non chargé. Veuillez recharger la page.", 'error');
+        return;
+      }
 
-    // 🧼 Nettoyage & préparation des données
-    const templateParams = {
-      name: sanitizeInput(form.name.value),
-      email: sanitizeInput(form.email.value),
-      message: sanitizeInput(form.message.value),
-      'g-recaptcha-response': recaptchaResponse
-    };
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        showMessage("⚠️ Veuillez cocher la case 'Je ne suis pas un robot'", 'error');
+        return;
+      }
 
-    // 🔒 Empêche le double clic
-    submitBtn.disabled = true;
+      // 🧼 Nettoyage & préparation des données
+      const templateParams = {
+        name: sanitizeInput(form.name.value),
+        email: sanitizeInput(form.email.value),
+        message: sanitizeInput(form.message.value),
+        'g-recaptcha-response': recaptchaResponse
+      };
 
-    // -----------------------------
-    // Envoi via EmailJS
-    // -----------------------------
-    emailjs.sendForm('service_l7c5sg4', 'template_bb4jbs8', this)
-      .then(() => {
-        showMessage("✅ Message envoyé avec succès !", 'success');
-        form.reset();
-        grecaptcha.reset();
-      })
-      .catch(() => {
-        showMessage("❌ Erreur lors de l'envoi. Veuillez réessayer.", 'error');
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
+      // 🔒 Empêche le double clic
+      submitBtn.disabled = true;
+
+      // 📤 Envoi via EmailJS
+      await emailjs.send('service_l7c5sg4', 'template_bb4jbs8', templateParams);
+
+      showMessage("✅ Message envoyé avec succès !", 'success');
+      form.reset();
+      grecaptcha.reset();
+
+    } catch (err) {
+      console.error("Erreur inattendue :", err);
+      showMessage("❌ Une erreur interne est survenue. Veuillez réessayer plus tard.", 'error');
+    } finally {
+      const submitBtn = form.querySelector("button[type=submit]");
+      if (submitBtn) submitBtn.disabled = false;
+
+      // 🕒 Réinitialiser le timer après un court délai
+      setTimeout(() => {
         if (startField) startField.value = Date.now();
-      });
+      }, 1000);
+    }
   });
 }
