@@ -195,6 +195,11 @@
             <div class="contact-container">
                 <form action="#contact" method="post" class="contact-form" id="contact-form">
                     <div class="container-left">
+                        <!-- 🪤 Champ honeypot caché (ne pas renommer en "honeypot") -->
+                        <input type="text" id="website_url" name="website_url" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;">
+                        <!-- ⏱️ Champ pour enregistrer le moment du chargement -->
+                        <input type="hidden" id="form_start" name="form_start">
+
                         <label for="firstname">Firstname</label>
                         <input type="text" id="firstname" name="firstname" required>
 
@@ -211,13 +216,6 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    
-                    <!-- 🪤 Champ honeypot caché (ne pas renommer en "honeypot") -->
-                    <input type="text" id="website_url" name="website_url" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;"
->
-
-                    <!-- ⏱️ Champ pour enregistrer le moment du chargement -->
-                    <input type="hidden" id="form_start" name="form_start">
 
                     <!-- Message utilisateur -->
                     <p id="form-message" class="hidden"></p>

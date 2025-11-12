@@ -6,6 +6,79 @@ if (form && messageEl) {
   const startField = document.getElementById('form_start');
   if (startField) startField.value = Date.now();
 
+  const RATE_LIMIT_KEY = 'form_submissions';
+  const MAX_SUBMISSIONS = 3;
+  const TIME_WINDOW = 3600000; // 1 heure en ms
+
+  // -----------------------------
+  // Fonctions utilitaires
+  // -----------------------------
+
+  // Affichage des erreurs / succès
+  function showMessage(text, type = 'error') {
+    messageEl.textContent = text;
+    messageEl.className = `${type} visible`;
+    setTimeout(() => (messageEl.className = 'hidden'), 5000);
+  }
+
+  // Validation email
+  function validateEmail(email) {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const disposableDomains = [
+      'tempmail.com', 'guerrillamail.com', '10minutemail.com',
+      'mailinator.com', 'throwaway.email'
+    ];
+    const domain = email.split('@')[1];
+
+    if (!regex.test(email)) {
+      return { valid: false, error: 'Format email invalide' };
+    }
+    if (disposableDomains.includes(domain)) {
+      return { valid: false, error: 'Emails jetables non acceptés' };
+    }
+    return { valid: true };
+  }
+
+  // Sanitization des champs
+  function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    let sanitized = div.innerHTML
+      .replace(/[<>]/g, '')
+      .trim();
+
+    const MAX_LENGTH = 5000;
+    if (sanitized.length > MAX_LENGTH) {
+      sanitized = sanitized.substring(0, MAX_LENGTH);
+    }
+    return sanitized;
+  }
+
+  // Rate limiting localStorage
+  function checkRateLimit() {
+    const now = Date.now();
+    let submissions = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || '[]');
+
+    // Garder seulement celles dans la fenêtre de temps
+    submissions = submissions.filter(time => now - time < TIME_WINDOW);
+
+    if (submissions.length >= MAX_SUBMISSIONS) {
+      const retryMinutes = Math.ceil((TIME_WINDOW - (now - submissions[0])) / 60000);
+      return {
+        allowed: false,
+        message: `Trop de soumissions. Réessayez dans ${retryMinutes} minute(s).`
+      };
+    }
+
+    submissions.push(now);
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(submissions));
+    return { allowed: true };
+  }
+
+  // -----------------------------
+  // Gestion du formulaire
+  // -----------------------------
+
   form.addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -26,43 +99,53 @@ if (form && messageEl) {
       return;
     }
 
-    // Vérifier que reCAPTCHA est validé
-    const recaptchaResponse = grecaptcha.getResponse();
-    if (!recaptchaResponse) {
-      messageEl.textContent = "⚠️ Veuillez cocher la case 'Je ne suis pas un robot'";
-      messageEl.className = "error visible";
-      setTimeout(() => messageEl.className = "hidden", 5000);
+    // Rate limiting
+    const rateLimit = checkRateLimit();
+    if (!rateLimit.allowed) {
+      showMessage(rateLimit.message, 'error');
       return;
     }
 
-    // Empêche double clic
-    submitBtn.disabled = true;
+    // Validation email
+    const emailValidation = validateEmail(form.email.value);
+    if (!emailValidation.valid) {
+      showMessage(emailValidation.error, 'error');
+      return;
+    }
 
-    // Préparer les données avec le token reCAPTCHA
+    // Vérifier que reCAPTCHA est validé
+    const recaptchaResponse = grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+      showMessage("⚠️ Veuillez cocher la case 'Je ne suis pas un robot'", 'error');
+      return;
+    }
+
+    // 🧼 Nettoyage & préparation des données
     const templateParams = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value,
+      name: sanitizeInput(form.name.value),
+      email: sanitizeInput(form.email.value),
+      message: sanitizeInput(form.message.value),
       'g-recaptcha-response': recaptchaResponse
     };
 
-    // Envoi EmailJS
+    // 🔒 Empêche le double clic
+    submitBtn.disabled = true;
+
+    // -----------------------------
+    // Envoi via EmailJS
+    // -----------------------------
     emailjs.sendForm('service_l7c5sg4', 'template_bb4jbs8', this)
       .then(() => {
-        messageEl.textContent = "✅ Message envoyé avec succès !";
-        messageEl.className = "success visible";
+        showMessage("✅ Message envoyé avec succès !", 'success');
         form.reset();
         grecaptcha.reset();
-        setTimeout(() => messageEl.className = "hidden", 5000);
       })
       .catch(() => {
-        messageEl.textContent = "❌ Erreur lors de l'envoi. Veuillez réessayer.";
-        messageEl.className = "error visible";
-        setTimeout(() => messageEl.className = "hidden", 5000);
+        showMessage("❌ Erreur lors de l'envoi. Veuillez réessayer.", 'error');
       })
       .finally(() => {
-        submitBtn.disabled = false; // réactive le bouton après l'envoi
-        if (startField) startField.value = Date.now(); // remet à zéro le timer
+        submitBtn.disabled = false;
+        if (startField) startField.value = Date.now();
       });
   });
 }
