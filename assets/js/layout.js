@@ -1,60 +1,77 @@
-// Détecte le bon chemin de base selon la profondeur du fichier
+// ==============================
+// 🔍 Détection du bon chemin de base
+// ==============================
 function getBasePath() {
     const path = window.location.pathname;
+
+    // Cas page d’accueil
     if (path.endsWith('/') || path.endsWith('index.html')) return './';
-    return '../';
+
+    // Cas sous-dossier (ex : /projects/xxx.html)
+    if (path.includes('/projects/')) return '../';
+
+    // Fallback par défaut
+    return './';
 }
 
-// Fonction pour mettre à jour tous les logos
+// ==============================
+// 🖼️ Met à jour les logos selon le thème
+// ==============================
 function updateAllLogos(isDark) {
     const basePath = getBasePath();
-    const logoSrc = isDark 
+    const logoSrc = isDark
         ? `${basePath}assets/img/logo-AL-white.png`
         : `${basePath}assets/img/logo-AL-dark.png`;
-    
+
     document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
         if (logo) logo.src = logoSrc;
     });
 }
 
-// Fonction pour corriger les liens selon le chemin
+// ==============================
+// 🔗 Corrige les liens relatifs et les logos
+// ==============================
 function fixLinks() {
     const basePath = getBasePath();
-    
-    // Corriger tous les liens du header et footer
+
+    // Corrige les liens commençant par "./"
     document.querySelectorAll('a[href^="./"]').forEach(link => {
         const href = link.getAttribute('href');
         link.setAttribute('href', href.replace('./', basePath));
     });
-    
-    // Corriger les logos
+
+    // Corrige les sources d’images
     document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
         const src = logo.getAttribute('src');
         logo.setAttribute('src', src.replace('./', basePath));
     });
 }
 
-// Fonction pour afficher le section indicator uniquement sur la homepage
+// ==============================
+// ⭐ Affiche le section indicator uniquement sur la homepage
+// ==============================
 function showSectionIndicator() {
+    const path = window.location.pathname;
     const isHomepage =
         window.location.pathname.endsWith('/') ||
         window.location.pathname.endsWith('index.html') ||
         window.location.pathname === '/';
-    
+
     const sectionIndicator = document.querySelector('.section-indicator');
     if (sectionIndicator && isHomepage) {
         sectionIndicator.style.display = 'block';
     }
 }
 
-// 🔥 Fonction pour détecter quelle section est visible
+// ==============================
+// 📍 Indique la section visible
+// ==============================
 function updateSectionIndicator() {
     const sections = document.querySelectorAll('section[id]');
     const indicators = document.querySelectorAll('.section-indicator a');
-    
+
     if (!sections.length || !indicators.length) return;
-    
-    // Observer les sections
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -84,7 +101,9 @@ function updateSectionIndicator() {
     sections.forEach(section => observer.observe(section));
 }
 
-// Charger le header
+// ==============================
+// 📥 Chargement du header
+// ==============================
 async function loadHeader() {
     const basePath = getBasePath();
     try {
@@ -100,7 +119,9 @@ async function loadHeader() {
     }
 }
 
-// Charger le footer
+// ==============================
+// 📥 Chargement du footer
+// ==============================
 async function loadFooter() {
     const basePath = getBasePath();
     try {
@@ -114,19 +135,23 @@ async function loadFooter() {
     }
 }
 
-// Fonction pour appliquer le thème au chargement
+// ==============================
+// 🌗 Applique le thème au chargement
+// ==============================
 function applyThemeOnLoad() {
     const savedTheme = localStorage.getItem('theme');
     const isDarkMode = savedTheme === 'dark';
-    
+
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
     }
-    
+
     updateAllLogos(isDarkMode);
 }
 
-// Initialiser les événements du header
+// ==============================
+// 🎛️ Initialise les événements du header
+// ==============================
 function initializeHeaderEvents() {
     // BURGER MENU TOGGLE
     const burger = document.querySelector('.burger');
@@ -220,7 +245,9 @@ function initializeHeaderEvents() {
     updateSectionIndicator();
 }
 
-// 🔥 Exécution automatique
+// ==============================
+// 🚀 Exécution automatique
+// ==============================
 document.addEventListener('DOMContentLoaded', async () => {
     // Charger header et footer
     if (document.getElementById('header-placeholder')) await loadHeader();

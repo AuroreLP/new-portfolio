@@ -13,8 +13,17 @@
     <meta property="og:locale" content="fr_FR">
     <meta name="theme-color" content="#2B4743">
 
+    
       <!-- Sécurité : Politique de contenu -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com https://www.gstatic.com https://cdn.emailjs.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy"
+      content="
+        script-src 'self' https://www.google.com https://www.gstatic.com https://cdn.emailjs.com https://unpkg.com 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        frame-src https://www.google.com https://www.gstatic.com;
+      ">
+
 
     <!-- Empêcher le MIME-type sniffing -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -246,7 +255,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.emailjs.com/sdk/4.0.0/email.min.js"></script>
     <script type="text/javascript">
     (function() {
         emailjs.init("fWfJhLGgGoxllEzfA");
