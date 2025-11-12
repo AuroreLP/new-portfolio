@@ -116,8 +116,10 @@ if (form && messageEl) {
 
       // 🧼 Nettoyage & préparation des données
       const templateParams = {
-        name: sanitizeInput(form.name.value),
+        firstname: sanitizeInput(form.firstname.value),
+        lastname: sanitizeInput(form.lastname.value),
         email: sanitizeInput(form.email.value),
+        subject: sanitizeInput(form.subject.value),
         message: sanitizeInput(form.message.value),
         'g-recaptcha-response': recaptchaResponse
       };
