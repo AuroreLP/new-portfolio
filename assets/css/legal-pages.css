@@ -10,9 +10,5 @@
 .legal-notices h2,
 .privacy-policy h2 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    text-align: start;
     color: var(--text-color);
-    width: 100%;
 }

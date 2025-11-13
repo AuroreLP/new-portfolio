@@ -7,16 +7,6 @@
         }
     }
 
-@media (max-width: 500px) {
-    .footer-elements {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 1rem;
-        gap: 1rem;
-    }
-    
-}
 
     /*  =================================
     HEADER & SOCIALS
@@ -275,8 +265,19 @@
     LEGAL PAGES
     ================================= */
 
-
-
+    /*  =================================
+    FOOTER
+    ================================= */
+@media (max-width: 500px) {
+    .footer-elements {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+    
+}
 
 
 
