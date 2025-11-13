@@ -41,7 +41,7 @@
     
     /* section indicator */
     .section-indicator {
-        display: none;
+        display: none !important;
     }
 }
 

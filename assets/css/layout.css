@@ -46,7 +46,7 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent;
+    background: var(--bg-color);
     z-index: 10000;
 }
 
