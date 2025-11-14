@@ -5,10 +5,40 @@
     flex-direction: column;
     align-items: start;
     justify-content: start;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.legal-notices h1,
+.privacy-policy h1 {
+    text-align: left;
+    margin-top: 6rem;
 }
 
 .legal-notices h2,
 .privacy-policy h2 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    color: var(--text-color);
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    text-align: left;
+    width: auto;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.legal-notices p,
+.privacy-policy p {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.legal-notices a,
+.privacy-policy a {
+    text-decoration: underline;
+}
+
+.legal-notices a:hover,
+.privacy-policy a:hover {
+    opacity: 0.8;
+    color: var(--secondary-color);
 }
