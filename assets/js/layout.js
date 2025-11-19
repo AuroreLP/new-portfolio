@@ -1,109 +1,22 @@
 // ==============================
-// 🔍 Détection du bon chemin de base
+// POINT D'ENTRÉE PRINCIPAL
 // ==============================
-function getBasePath() {
-    const path = window.location.pathname;
-
-    // Cas page d’accueil
-    if (path.endsWith('/') || path.endsWith('index.html')) return './';
-
-    // Cas sous-dossier (ex : /projects/xxx.html)
-    if (path.includes('/projects/')) return '../';
-
-    // Fallback par défaut
-    return './';
-}
-
-// ==============================
-// 🖼️ Met à jour les logos selon le thème
-// ==============================
-function updateAllLogos(isDark) {
-    const basePath = getBasePath();
-    const logoSrc = isDark
-        ? `${basePath}assets/img/logo-AL-white.png`
-        : `${basePath}assets/img/logo-AL-dark.png`;
-
-    document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
-        if (logo) logo.src = logoSrc;
-    });
-}
-
-// ==============================
-// 🔗 Corrige les liens relatifs et les logos
-// ==============================
-function fixLinks() {
-    const basePath = getBasePath();
-
-    // Corrige les liens commençant par "./"
-    document.querySelectorAll('a[href^="./"]').forEach(link => {
-        const href = link.getAttribute('href');
-        link.setAttribute('href', href.replace('./', basePath));
-    });
-
-    // Corrige les sources d’images
-    document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
-        const src = logo.getAttribute('src');
-        logo.setAttribute('src', src.replace('./', basePath));
-    });
-}
-
-// ==============================
-// ⭐ Affiche le section indicator uniquement sur la homepage
-// ==============================
-function showSectionIndicator() {
-    const path = window.location.pathname;
-    const isHomepage =
-        window.location.pathname.endsWith('/') ||
-        window.location.pathname.endsWith('index.html') ||
-        window.location.pathname === '/';
-
-    const sectionIndicator = document.querySelector('.section-indicator');
-    if (sectionIndicator && isHomepage) {
-        sectionIndicator.style.display = 'block';
-    }
-}
-
-// ==============================
-// 📍 Indique la section visible
-// ==============================
-function updateSectionIndicator() {
-    const sections = document.querySelectorAll('section[id]');
-    const indicators = document.querySelectorAll('.section-indicator a');
-
-    if (!sections.length || !indicators.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const sectionId = entry.target.id;
-                
-                // Retirer la classe active de tous les indicateurs
-                indicators.forEach(indicator => {
-                    const icon = indicator.querySelector('.section-icon');
-                    indicator.classList.remove('active');
-                    if (icon) icon.setAttribute('name', 'ellipse-outline');
-                });
-                
-                // Ajouter la classe active à l'indicateur correspondant
-                const activeIndicator = document.querySelector(`.section-indicator a[data-section="${sectionId}"]`);
-                if (activeIndicator) {
-                    activeIndicator.classList.add('active');
-                    const activeIcon = activeIndicator.querySelector('.section-icon');
-                    if (activeIcon) activeIcon.setAttribute('name', 'star');
-                }
-            }
-        });
-    }, {
-        threshold: 0.5 // La section doit être visible à 50% pour être considérée active
-    });
+document.addEventListener('DOMContentLoaded', async () => {
+    // Charger header et footer
+    if (document.getElementById('header-placeholder')) await loadHeader();
+    if (document.getElementById('footer-placeholder')) await loadFooter();
     
-    // Observer toutes les sections
-    sections.forEach(section => observer.observe(section));
-}
+    // Appliquer le thème après chargement
+    setTimeout(() => {
+        applyThemeOnLoad();
+    }, 100);
+});
 
 // ==============================
-// 📥 Chargement du header
+// CHARGEMENT DES COMPOSANTS
 // ==============================
+
+// Chargement du header
 async function loadHeader() {
     const basePath = getBasePath();
     try {
@@ -119,9 +32,7 @@ async function loadHeader() {
     }
 }
 
-// ==============================
-// 📥 Chargement du footer
-// ==============================
+// Chargement du footer
 async function loadFooter() {
     const basePath = getBasePath();
     try {
@@ -136,8 +47,10 @@ async function loadFooter() {
 }
 
 // ==============================
-// 🌗 Applique le thème au chargement
+// GESTION DU THÈME
 // ==============================
+
+// Applique le thème au chargement
 function applyThemeOnLoad() {
     const savedTheme = localStorage.getItem('theme');
     const isDarkMode = savedTheme === 'dark';
@@ -149,8 +62,20 @@ function applyThemeOnLoad() {
     updateAllLogos(isDarkMode);
 }
 
+// Met à jour les logos selon le thème
+function updateAllLogos(isDark) {
+    const basePath = getBasePath();
+    const logoSrc = isDark
+        ? `${basePath}assets/img/logo-AL-white.png`
+        : `${basePath}assets/img/logo-AL-dark.png`;
+
+    document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
+        if (logo) logo.src = logoSrc;
+    });
+}
+
 // ==============================
-// 🎛️ Initialise les événements du header
+// ÉVÉNEMENTS DU HEADER
 // ==============================
 function initializeHeaderEvents() {
     // BURGER MENU TOGGLE
@@ -246,15 +171,90 @@ function initializeHeaderEvents() {
 }
 
 // ==============================
-// 🚀 Exécution automatique
+// SECTION INDICATOR
 // ==============================
-document.addEventListener('DOMContentLoaded', async () => {
-    // Charger header et footer
-    if (document.getElementById('header-placeholder')) await loadHeader();
-    if (document.getElementById('footer-placeholder')) await loadFooter();
+
+// Affiche le section indicator uniquement sur la homepage
+function showSectionIndicator() {
+    const path = window.location.pathname;
+    const isHomepage =
+        window.location.pathname.endsWith('/') ||
+        window.location.pathname.endsWith('index.html') ||
+        window.location.pathname === '/';
+
+    const sectionIndicator = document.querySelector('.section-indicator');
+    if (sectionIndicator && isHomepage) {
+        sectionIndicator.style.display = 'block';
+    }
+}
+
+// Indique la section visible
+function updateSectionIndicator() {
+    const sections = document.querySelectorAll('section[id]');
+    const indicators = document.querySelectorAll('.section-indicator a');
+
+    if (!sections.length || !indicators.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                
+                // Retirer la classe active de tous les indicateurs
+                indicators.forEach(indicator => {
+                    const icon = indicator.querySelector('.section-icon');
+                    indicator.classList.remove('active');
+                    if (icon) icon.setAttribute('name', 'ellipse-outline');
+                });
+                
+                // Ajouter la classe active à l'indicateur correspondant
+                const activeIndicator = document.querySelector(`.section-indicator a[data-section="${sectionId}"]`);
+                if (activeIndicator) {
+                    activeIndicator.classList.add('active');
+                    const activeIcon = activeIndicator.querySelector('.section-icon');
+                    if (activeIcon) activeIcon.setAttribute('name', 'star');
+                }
+            }
+        });
+    }, {
+        threshold: 0.5 // La section doit être visible à 50% pour être considérée active
+    });
     
-    // Appliquer le thème après chargement
-    setTimeout(() => {
-        applyThemeOnLoad();
-    }, 100);
-});
+    // Observer toutes les sections
+    sections.forEach(section => observer.observe(section));
+}
+
+// ==============================
+// 🔧 FONCTIONS UTILITAIRES
+// ==============================
+
+// Détection du bon chemin de base
+function getBasePath() {
+    const path = window.location.pathname;
+
+    // Cas page d'accueil
+    if (path.endsWith('/') || path.endsWith('index.html')) return './';
+
+    // Cas sous-dossier (ex : /projects/xxx.html)
+    if (path.includes('/projects/')) return '../';
+
+    // Fallback par défaut
+    return './';
+}
+
+// Corrige les liens relatifs et les logos
+function fixLinks() {
+    const basePath = getBasePath();
+
+    // Corrige les liens commençant par "./"
+    document.querySelectorAll('a[href^="./"]').forEach(link => {
+        const href = link.getAttribute('href');
+        link.setAttribute('href', href.replace('./', basePath));
+    });
+
+    // Corrige les sources d'images
+    document.querySelectorAll('#logo-header, #logo-footer').forEach(logo => {
+        const src = logo.getAttribute('src');
+        logo.setAttribute('src', src.replace('./', basePath));
+    });
+}
